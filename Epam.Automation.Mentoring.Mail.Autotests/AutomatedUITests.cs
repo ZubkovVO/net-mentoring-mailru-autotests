@@ -1,22 +1,18 @@
 ﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
-using OpenQA.Selenium.Support.Events;
 using OpenQA.Selenium.Support.UI;
 using System;
-using System.Runtime.CompilerServices;
 using Xunit;
 
 namespace Epam.Automation.Mentoring.Mail.Autotests
 {
     public class AutomatedUITests : IDisposable
     {
-
-        //Конструктор для xUnit по сути предусловия для тестовых случаев
+        //Создаем новый объект ChromeDriver в конструкторе
         private readonly IWebDriver driver;
         public AutomatedUITests()
         {
             driver = new ChromeDriver();
-
         }
 
         [Fact] //Тестовый случай, аналогичен TestCase    
@@ -26,14 +22,12 @@ namespace Epam.Automation.Mentoring.Mail.Autotests
             string email = "tst_atmp_2020q2";
             string password = "Administratum4199";
             string adressee = "nrco@mail.ru";
-            string topic = "Just for test 7";
+            string topic = "Just for test 8";
             string text = "Something for testing purposes";
             By searchEmailAndTopicToValidate = By.XPath("//div[@class='dataset-letters']//span[@title='" + adressee + "']" +
             "/parent::div/following-sibling::div[contains(@class, 'llc__item_title')]//span[text()='" + topic + "']");
-            TimeSpan timeout = TimeSpan.FromSeconds(30);
             By testText = By.XPath(".//div[@data-name='to']//input[starts-with(@type, 'text')]");
-
-            
+            TimeSpan timeout = TimeSpan.FromSeconds(30); //задаем сколько времени селениум будет ждать сл. действия
 
             CustomDriver cDriver = new CustomDriver();
             //Переходим на сайт и подтверждаем, что это тот сайт, что нам нужен
@@ -46,26 +40,21 @@ namespace Epam.Automation.Mentoring.Mail.Autotests
             driver.FindElement(By.Id("mailbox:password")).SendKeys(password);
             driver.FindElement(By.Id("mailbox:submit")).Click();
 
-            //Составляем письмо
-            //driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(5);
-
+            //Кликаем на кнопку создания нового письма (работает на любом разрешении)
             cDriver.Click(driver, By.XPath(".//span[@class='compose-button__wrapper']"));
-            //driver.FindElement(By.XPath(".//span[@class='compose-button__wrapper']")).Click();
             
+            //Заполняем получателя, тему и текст письма
             cDriver.SendKeys(driver, testText, adressee);
-            //adress.CheckIfPresent(driver, searchEmailAndTopicToValidate);
-            // driver.FindElement(By.XPath(".//div[@data-name='to']//input[starts-with(@type, 'text')]")).SendKeys(adressee);
             driver.FindElement(By.XPath(".//input[starts-with(@name, 'Subject')]")).SendKeys(topic);
             driver.FindElement(By.XPath(".//div[@role='textbox']/div[1]")).SendKeys(text);
 
-            //Сохраняем писмьо и закрываем его
+            //Сохраняем письмо и закрываем его
             driver.FindElement(By.XPath(".//span[@title='Сохранить']")).Click();
             driver.FindElement(By.XPath(".//button[@title='Закрыть']")).Click();
             driver.FindElement(By.XPath(".//div[@class='nav-folders']//a[@href='/drafts/']")).Click();
 
             //Проверяем наличие и содержание письма
             //Можно проверять присутствие элемента так
-
             cDriver.CheckIfPresent(driver, searchEmailAndTopicToValidate);
             Boolean isEmailPresent = driver.FindElements(searchEmailAndTopicToValidate).Count > 0;
             Assert.True(isEmailPresent);
@@ -97,7 +86,6 @@ namespace Epam.Automation.Mentoring.Mail.Autotests
             //Выходим
             driver.FindElement(By.XPath(".//a[@title='выход']")).Click();
             System.Threading.Thread.Sleep(3000); //для визуального просмотра результатов теста only, удаляем после вывода в production
-
         }
 
         //Аналогичен Clean
@@ -106,10 +94,5 @@ namespace Epam.Automation.Mentoring.Mail.Autotests
             driver.Quit();
             driver.Dispose();
         }
-
-        
-
-
-
     }
 }

@@ -1,10 +1,6 @@
 ﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
 using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Text;
-using Xunit;
 
 namespace Epam.Automation.Mentoring.Mail.Autotests
 {
@@ -51,35 +47,6 @@ namespace Epam.Automation.Mentoring.Mail.Autotests
             );
 
         }
-
-
-     /*  public static Func<IWebDriver, IWebElement> CheckIfAbsent(IWebDriver driver, By by)
-        {
-            WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
-
-            wait.Until<IWebElement>(driver) =>
-             {
-                try
-                {
-                    var element = driver.FindElement(by);
-                    return !element.Displayed;
-                }
-                catch (NoSuchElementException)
-                {
-                    // Returns true because the element is not present in DOM. The
-                    // try block checks if the element is present but is invisible.
-                    return true;
-                }
-                catch (StaleElementReferenceException)
-                {
-                    // Returns true because stale element reference implies that element
-                    // is no longer visible.
-                    return true;
-                }
-            };
-
-        }*/
-
 
        public static Func<IWebDriver, bool> InvisibilityOfElementLocated(By locator)
          {
