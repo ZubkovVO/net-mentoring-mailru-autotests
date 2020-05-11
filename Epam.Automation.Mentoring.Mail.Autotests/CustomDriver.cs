@@ -8,7 +8,7 @@ using Xunit;
 
 namespace Epam.Automation.Mentoring.Mail.Autotests
 {
-    class CustomWaits
+    class CustomDriver
     {
         public void SendKeys(IWebDriver driver, By by, string valueToType)
         {
