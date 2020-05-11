@@ -11,7 +11,7 @@ namespace Epam.Automation.Mentoring.Mail.Autotests
     public class AutomatedUITests : IDisposable
     {
 
-        //Конструктор для xUnit по сути предусловия для тестовых случаев
+        //В конструкторе создаем ChromeDriver
         private readonly IWebDriver driver;
         public AutomatedUITests()
         {
@@ -19,7 +19,7 @@ namespace Epam.Automation.Mentoring.Mail.Autotests
 
         }
 
-        [Fact] //Тестовый случай, аналогичен TestCase    
+        [Fact] //Тестовый случай, аналогичен TestCase в nUnit   
         public void Email_Create_Validate_Send_Test()
         {
             //Объявляем переменные для простоты работы
@@ -30,12 +30,14 @@ namespace Epam.Automation.Mentoring.Mail.Autotests
             string text = "Something for testing purposes";
             By searchEmailAndTopicToValidate = By.XPath("//div[@class='dataset-letters']//span[@title='" + adressee + "']" +
             "/parent::div/following-sibling::div[contains(@class, 'llc__item_title')]//span[text()='" + topic + "']");
-            TimeSpan timeout = TimeSpan.FromSeconds(30);
             By testText = By.XPath(".//div[@data-name='to']//input[starts-with(@type, 'text')]");
-
             
+            //Задаем время в секундах, которое будет использоваться при ожидании сл. действия драйвера
+            TimeSpan timeout = TimeSpan.FromSeconds(30);
 
+            //Создаем новый объект класса CustomDriver для выполнения методов требующих ожидания
             CustomDriver cDriver = new CustomDriver();
+
             //Переходим на сайт и подтверждаем, что это тот сайт, что нам нужен
             driver.Navigate().GoToUrl("https://mail.ru/");
             Assert.Equal("Mail.ru: почта, поиск в интернете, новости, игры", driver.Title);
@@ -46,30 +48,27 @@ namespace Epam.Automation.Mentoring.Mail.Autotests
             driver.FindElement(By.Id("mailbox:password")).SendKeys(password);
             driver.FindElement(By.Id("mailbox:submit")).Click();
 
-            //Составляем письмо
-            //driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(5);
-
+            //Нажимаем кнопку, которая отвечает за создание нового письма при любом разрешении экрана
             cDriver.Click(driver, By.XPath(".//span[@class='compose-button__wrapper']"));
-            //driver.FindElement(By.XPath(".//span[@class='compose-button__wrapper']")).Click();
-            
+
+            //Задаем получателя письма, тему и текст            
             cDriver.SendKeys(driver, testText, adressee);
-            //adress.CheckIfPresent(driver, searchEmailAndTopicToValidate);
-            // driver.FindElement(By.XPath(".//div[@data-name='to']//input[starts-with(@type, 'text')]")).SendKeys(adressee);
             driver.FindElement(By.XPath(".//input[starts-with(@name, 'Subject')]")).SendKeys(topic);
             driver.FindElement(By.XPath(".//div[@role='textbox']/div[1]")).SendKeys(text);
 
-            //Сохраняем писмьо и закрываем его
+            //Сохраняем письмо и закрываем его
             driver.FindElement(By.XPath(".//span[@title='Сохранить']")).Click();
             driver.FindElement(By.XPath(".//button[@title='Закрыть']")).Click();
             driver.FindElement(By.XPath(".//div[@class='nav-folders']//a[@href='/drafts/']")).Click();
 
             //Проверяем наличие и содержание письма
-            //Можно проверять присутствие элемента так
 
+            //Можно проверять присутствие элемента так
             cDriver.CheckIfPresent(driver, searchEmailAndTopicToValidate);
             Boolean isEmailPresent = driver.FindElements(searchEmailAndTopicToValidate).Count > 0;
             Assert.True(isEmailPresent);
             driver.FindElement(By.XPath("//div[@class='dataset-letters']//span[@title='" + adressee + "']/parent::div/following-sibling::div[contains(@class, 'llc__item_title')]//span[text()='" + topic + "']")).Click();
+            
             //Можно сразу подставлять поиск элемента в Assert и проверять, но тогда не всегда очевидно, что мы проверяем, без доп. коментариев
             cDriver.CheckIfPresent(driver, By.XPath(".//div[@role='textbox']//div[text()='" + text + "']"));
             Assert.True(driver.FindElements(By.XPath(".//div[@role='textbox']//div[text()='" + text + "']")).Count > 0);
@@ -79,8 +78,7 @@ namespace Epam.Automation.Mentoring.Mail.Autotests
             //Отправляем и закрываем модальное окно
             driver.FindElement(By.XPath(".//span[@title='Отправить']")).Click();
             cDriver.Click(driver, By.XPath(".//span[@title='Закрыть']"));
-            //driver.FindElement(By.XPath(".//span[@title='Закрыть']")).Click();
-
+ 
             //Проверяем, что письма нет в Черновиках
             WebDriverWait wait = new WebDriverWait(driver, timeout);
             //Замена на deprecated ExpectedConditions на функцию взятую из кода Selenium
@@ -106,10 +104,6 @@ namespace Epam.Automation.Mentoring.Mail.Autotests
             driver.Quit();
             driver.Dispose();
         }
-
-        
-
-
 
     }
 }
