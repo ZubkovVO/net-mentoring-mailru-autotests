@@ -22,7 +22,7 @@ namespace Epam.Automation.Mentoring.Mail.Autotests
             string email = "tst_atmp_2020q2";
             string password = "Administratum4199";
             string adressee = "nrco@mail.ru";
-            string topic = "Just for test 8";
+            string topic = "Just for test 55";
             string text = "Something for testing purposes";
             By searchEmailAndTopicToValidate = By.XPath("//div[@class='dataset-letters']//span[@title='" + adressee + "']" +
             "/parent::div/following-sibling::div[contains(@class, 'llc__item_title')]//span[text()='" + topic + "']");
@@ -37,8 +37,8 @@ namespace Epam.Automation.Mentoring.Mail.Autotests
             //Логинимся
             driver.FindElement(By.Id("mailbox:login")).SendKeys(email);
             driver.FindElement(By.Id("mailbox:submit")).Click();
-            driver.FindElement(By.Id("mailbox:password")).SendKeys(password);
-            driver.FindElement(By.Id("mailbox:submit")).Click();
+            cDriver.SendKeys(driver, By.Id("mailbox:password"), password);
+            cDriver.Click(driver, By.Id("mailbox:submit"));
 
             //Кликаем на кнопку создания нового письма (работает на любом разрешении)
             cDriver.Click(driver, By.XPath(".//span[@class='compose-button__wrapper']"));
