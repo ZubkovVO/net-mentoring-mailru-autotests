@@ -5,7 +5,7 @@ namespace Epam.Automation.Mentoring.Mail.Autotests.WebObjects
 {
     public class MailComposeNewEmail
     {
-        private MyWebDriver driver;
+        private readonly MyWebDriver driver;
 
         public MailComposeNewEmail(MyWebDriver driver)
         {

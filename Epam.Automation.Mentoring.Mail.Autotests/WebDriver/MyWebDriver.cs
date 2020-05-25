@@ -7,7 +7,7 @@ namespace Epam.Automation.Mentoring.Mail.Autotests.WebDriver
 {
     public class MyWebDriver : IWebDriver
     {
-        private IWebDriver webDriver;
+        private readonly IWebDriver webDriver;
         public string CurrentTest { get; set; }
 
         public MyWebDriver(IWebDriver webDriver)

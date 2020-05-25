@@ -10,7 +10,7 @@ namespace Epam.Automation.Mentoring.Mail.Autotests.Tests
 {
     public class ComposeNewEmail : IDisposable
     {        
-        private MyWebDriver driver;
+        private readonly MyWebDriver driver;
         
 
         public ComposeNewEmail()
@@ -23,11 +23,11 @@ namespace Epam.Automation.Mentoring.Mail.Autotests.Tests
         public void Compose_New_Email()
         {
             //Объявляем переменные, которые могут понадобится
-            string addressee = TestDataProvider.addressee;
-            string email = TestDataProvider.email;
-            string password = TestDataProvider.password;
-            string topic = TestDataProvider.topic;
-            string text = TestDataProvider.text;
+            string addressee = TestDataProvider.Addressee;
+            string email = TestDataProvider.Email;
+            string password = TestDataProvider.Password;
+            string topic = TestDataProvider.Topic;
+            string text = TestDataProvider.Text;
 
 
 

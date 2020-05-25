@@ -5,7 +5,7 @@ namespace Epam.Automation.Mentoring.Mail.Autotests.WebObjects
 {
     public class MailHomePage
     {
-        private MyWebDriver driver;
+        private readonly MyWebDriver driver;
 
         public MailHomePage(MyWebDriver driver)
         {

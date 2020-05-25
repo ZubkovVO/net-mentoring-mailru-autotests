@@ -7,15 +7,15 @@ namespace Epam.Automation.Mentoring.Mail.Autotests.WebObjects
 {
     public class EmailsContainer
     {
-        private MyWebDriver driver;
-        private string addressee;
-        private string topic;
+        private readonly MyWebDriver driver;
+        private readonly string addressee;
+        private readonly string topic;
 
         public EmailsContainer(MyWebDriver driver)
         {
             //Объявляем переменные, которые могут понадобится
-            this.addressee = TestDataProvider.addressee;
-            this.topic = TestDataProvider.topic;
+            this.addressee = TestDataProvider.Addressee;
+            this.topic = TestDataProvider.Topic;
 
             this.driver = driver;
         }
