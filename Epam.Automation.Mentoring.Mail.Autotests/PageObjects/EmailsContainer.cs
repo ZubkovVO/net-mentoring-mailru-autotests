@@ -14,10 +14,8 @@ namespace Epam.Automation.Mentoring.Mail.Autotests.WebObjects
         public EmailsContainer(MyWebDriver driver)
         {
             //Объявляем переменные, которые могут понадобится
-            XmlReader xml = new XmlReader();
-            List<string> testDataArray = xml.XmlXpath();
-            this.addressee = testDataArray[0];
-            this.topic = testDataArray[3];
+            this.addressee = TestDataProvider.addressee;
+            this.topic = TestDataProvider.topic;
 
             this.driver = driver;
         }

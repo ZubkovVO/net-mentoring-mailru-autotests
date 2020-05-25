@@ -11,23 +11,25 @@ namespace Epam.Automation.Mentoring.Mail.Autotests.Tests
     public class ComposeNewEmail : IDisposable
     {        
         private MyWebDriver driver;
+        
 
         public ComposeNewEmail()
         {
             driver = new MyWebDriver(new ChromeDriver());
+            TestDataProvider.FetchFromXmlReader();
         }
 
         [Fact]
         public void Compose_New_Email()
         {
             //Объявляем переменные, которые могут понадобится
-            XmlReader xml = new XmlReader();
-            List<string> testDataArray = xml.XmlXpath();
-            string addressee = testDataArray[0];
-            string email = testDataArray[1];
-            string password = testDataArray[2];
-            string topic = testDataArray[3];
-            string text = testDataArray[4];
+            string addressee = TestDataProvider.addressee;
+            string email = TestDataProvider.email;
+            string password = TestDataProvider.password;
+            string topic = TestDataProvider.topic;
+            string text = TestDataProvider.text;
+
+
 
             //Логинимся
             MailHomePage home = new MailHomePage(driver);

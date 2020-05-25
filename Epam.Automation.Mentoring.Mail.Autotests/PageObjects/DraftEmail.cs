@@ -15,11 +15,9 @@ namespace Epam.Automation.Mentoring.Mail.Autotests.WebObjects
         public DraftEmail(MyWebDriver driver)
         {
             //Объявляем переменные, которые могут понадобится
-            XmlReader xml = new XmlReader();
-            List<string> testDataArray = xml.XmlXpath();
-            this.addressee = testDataArray[0];
-            this.topic = testDataArray[3];
-            this.text = testDataArray[4];
+            this.addressee = TestDataProvider.addressee;
+            this.topic = TestDataProvider.topic;
+            this.text = TestDataProvider.text;
 
             this.driver = driver;
         }
