@@ -13,36 +13,36 @@ namespace Epam.Automation.Mentoring.Mail.Autotests.WebObjects
         }
 
 
-        public IWebElement compose
+        public IWebElement Compose
         {
             get { return this.driver.FindElement(By.XPath(".//span[@class='compose-button__wrapper']")); }
         }
 
-        public IWebElement drafts
+        public IWebElement Drafts
         {
             get { return this.driver.FindElement(By.XPath(".//div[@class='nav-folders']//a[@href='/drafts/']")); }
         }
 
-        public IWebElement sent
+        public IWebElement Sent
         {
             get { return this.driver.FindElement(By.XPath(".//div[@class='nav-folders']//a[@href='/sent/']")); }
         }    
 
-        public MailComposeNewEmail composeNewEmail()
+        public MailComposeNewEmail ComposeNewEmail()
         {
-            compose.Click();
+            Compose.Click();
             return new MailComposeNewEmail(driver);
         }
 
-        public EmailsContainer goToDrafts()
+        public EmailsContainer GoToDrafts()
         {
-            drafts.Click();
+            Drafts.Click();
             return new EmailsContainer(driver);
         }
 
-        public EmailsContainer goToSent()
+        public EmailsContainer GoToSent()
         {
-            sent.Click();
+            Sent.Click();
             return new EmailsContainer(driver);
         }
 

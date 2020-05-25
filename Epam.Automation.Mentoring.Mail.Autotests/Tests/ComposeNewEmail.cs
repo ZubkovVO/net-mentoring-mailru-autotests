@@ -21,7 +21,7 @@ namespace Epam.Automation.Mentoring.Mail.Autotests.Tests
         public void Compose_New_Email()
         {
             //Объявляем переменные, которые могут понадобится
-            GetDataFromXml xml = new GetDataFromXml();
+            XmlReader xml = new XmlReader();
             List<string> testDataArray = xml.XmlXpath();
             string addressee = testDataArray[0];
             string email = testDataArray[1];
@@ -31,39 +31,37 @@ namespace Epam.Automation.Mentoring.Mail.Autotests.Tests
 
             //Логинимся
             MailHomePage home = new MailHomePage(driver);
-            home.goToPage();
-            home.enterLogin(email);
-            home.clickSubmitButton();
-            home.enterPassword(password);
+            home.Login(email, password);
 
-            MailMainMenu menu = home.goToMenu();
+            //Переходим к меню и передаем инстанс драйвера дальше
+            MailMainMenu menu = home.GoToMenu();
 
             //Приступаем к созданию нового письма
-            MailComposeNewEmail newEmail = menu.composeNewEmail();
-            newEmail.fillAddressee(addressee);
-            newEmail.fillTopic(topic);
-            newEmail.fillText(text);
-            newEmail.clickSaveButton();
-            newEmail.clickCloseButton();
+            MailComposeNewEmail newEmail = menu.ComposeNewEmail();
+            newEmail.FillAddressee(addressee);
+            newEmail.FillTopic(topic);
+            newEmail.FillText(text);
+            newEmail.ClickSaveButton();
+            newEmail.ClickCloseButton();
 
             //Переходим в черновики
-            EmailsContainer emails = menu.goToDrafts();
+            EmailsContainer emails = menu.GoToDrafts();
 
             //Открываем нужный черновик
-            DraftEmail draft = emails.openDraft();
-            Assert.True(draft.checkAddressee());
-            Assert.True(draft.checkTopic());
-            Assert.True(draft.checkText());
-            draft.clickSendButton();
-            draft.closeEmail();
-            emails.waitForEmailSent();
+            DraftEmail draft = emails.OpenDraft();
+            Assert.True(draft.CheckAddressee());
+            Assert.True(draft.CheckTopic());
+            Assert.True(draft.CheckText());
+            draft.ClickSendButton();
+            draft.CloseEmail();
+            emails.WaitForEmailSent();
 
             //Переходим в отправленные
-            menu.goToSent();
-            Assert.True(emails.validateAddresseeAndTopic());
+            menu.GoToSent();
+            Assert.True(emails.ValidateAddresseeAndTopic());
 
             //Выходим из почты
-            home.exitEmail();
+            home.ExitEmail();
 
         }
 

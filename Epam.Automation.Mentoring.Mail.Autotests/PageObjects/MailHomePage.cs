@@ -12,55 +12,43 @@ namespace Epam.Automation.Mentoring.Mail.Autotests.WebObjects
             this.driver = driver;
         }
 
-        public IWebElement loginField
+        public IWebElement LoginField
         {
             get { return this.driver.FindElement(By.Id("mailbox:login")); }
         }
 
-        public IWebElement submitButton
+        public IWebElement SubmitButton
         {
             get { return this.driver.FindElement(By.Id("mailbox:submit")); }
         }
 
-        public IWebElement passwordField
+        public IWebElement PasswordField
         {
             get { return this.driver.FindElement(By.Id("mailbox:password")); }
         }
 
-        public IWebElement exit
+        public IWebElement Exit
         {
             get { return this.driver.FindElement(By.XPath(".//a[@title='выход']")); }
         }
 
-        public void goToPage()
+        public MailMainMenu GoToMenu()
         {
-            driver.Navigate().GoToUrl("https://www.mail.ru");
-        }
-
-        public void enterLogin(string loginInput)
-        {
-            loginField.SendKeys(loginInput);
-        }
-
-        public void clickSubmitButton()
-        {
-            submitButton.Click();
-        }
-
-        public void enterPassword(string passwordInput)
-        {
-            passwordField.SendKeys(passwordInput);
-        }
-
-        public MailMainMenu goToMenu()
-        {
-            submitButton.Click();
             return new MailMainMenu(driver);
         }
 
-        public void exitEmail()
+        public void ExitEmail()
         {
-            exit.Click();
+            Exit.Click();
+        }
+
+        public void Login(string loginInput, string passwordInput)
+        {
+            driver.Navigate().GoToUrl("https://www.mail.ru");
+            LoginField.SendKeys(loginInput);
+            SubmitButton.Click();
+            PasswordField.SendKeys(passwordInput);
+            SubmitButton.Click();
         }
     }
 }

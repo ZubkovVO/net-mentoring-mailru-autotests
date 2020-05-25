@@ -12,57 +12,57 @@ namespace Epam.Automation.Mentoring.Mail.Autotests.WebObjects
             this.driver = driver;
         }
 
-        public IWebElement addressee
+        public IWebElement Addressee
         {
             get { return this.driver.FindElement(By.XPath(".//div[@data-name='to']//input[starts-with(@type, 'text')]")); }
         }
 
-        public IWebElement topic
+        public IWebElement Topic
         {
             get { return this.driver.FindElement(By.XPath(".//input[starts-with(@name, 'Subject')]")); }
         }
 
-        public IWebElement messageText
+        public IWebElement MessageText
         {
             get { return this.driver.FindElement(By.XPath(".//div[@role='textbox']/div[1]")); }
         }
 
-        public IWebElement saveButton
+        public IWebElement SaveButton
         {
             get { return this.driver.FindElement(By.XPath(".//span[@title='Сохранить']")); }
         }
 
-        public IWebElement closeButton
+        public IWebElement CloseButton
         {
             get { return this.driver.FindElement(By.XPath(".//button[@title='Закрыть']")); }
         }
 
-        public void fillAddressee(string to)
+        public void FillAddressee(string to)
         {
-            addressee.SendKeys(to);
+            Addressee.SendKeys(to);
         }
 
-        public void fillTopic(string topicInput)
+        public void FillTopic(string topicInput)
         {
-            topic.SendKeys(topicInput);
+            Topic.SendKeys(topicInput);
         }
 
-        public void fillText(string emailText)
+        public void FillText(string emailText)
         {
-            messageText.SendKeys(emailText);
+            MessageText.SendKeys(emailText);
         }
 
-        public void clickSaveButton()
+        public void ClickSaveButton()
         {
-            saveButton.Click();
+            SaveButton.Click();
         }
 
-        public void clickCloseButton()
+        public void ClickCloseButton()
         {
-            closeButton.Click();
+            CloseButton.Click();
         }
 
-        public MailMainMenu goToMenu()
+        public MailMainMenu GoToMenu()
         {
             return new MailMainMenu(driver);
         }

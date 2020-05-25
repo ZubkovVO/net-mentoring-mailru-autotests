@@ -1,17 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Xml;
+﻿using System.Collections.Generic;
 using System.Xml.XPath;
-using System.Linq;
 
 namespace Epam.Automation.Mentoring.Mail.Autotests
 {
-    class GetDataFromXml
+    class XmlReader
     {
         public List<string> XmlXpath()
         {
-            XPathDocument document = new XPathDocument("C:\\Users\\nrcos\\source\\repos\\Automated Testing Mentoring Program [2020Q2 RU]\\Epam.Automation.Mentoring.Mail.Autotests\\XmlData.xml");
+            // abs.path C:\\Users\\nrcos\\source\\repos\\Automated Testing Mentoring Program [2020Q2 RU]\\Epam.Automation.Mentoring.Mail.Autotests\\XmlData.xml
+            XPathDocument document = new XPathDocument("..\\..\\..\\XmlData.xml");
             XPathNavigator navigator = document.CreateNavigator();
            
             //Ищем и добавляем в массив все необходимые занчения

@@ -15,7 +15,7 @@ namespace Epam.Automation.Mentoring.Mail.Autotests.WebObjects
         public DraftEmail(MyWebDriver driver)
         {
             //Объявляем переменные, которые могут понадобится
-            GetDataFromXml xml = new GetDataFromXml();
+            XmlReader xml = new XmlReader();
             List<string> testDataArray = xml.XmlXpath();
             this.addressee = testDataArray[0];
             this.topic = testDataArray[3];
@@ -24,64 +24,64 @@ namespace Epam.Automation.Mentoring.Mail.Autotests.WebObjects
             this.driver = driver;
         }
 
-        public ReadOnlyCollection<IWebElement> draftTopic
+        public ReadOnlyCollection<IWebElement> DraftTopic
         {
             get { return this.driver.FindElements(By.XPath(".//input[@name='Subject' and @value='" + topic + "']")); }
         }
 
-        public IWebElement findTopic
+        public IWebElement FindTopic
         {
             get { return this.driver.FindElement(By.XPath(".//input[@name='Subject' and @value='" + topic + "']")); }
         }
 
-        public ReadOnlyCollection<IWebElement> draftText
+        public ReadOnlyCollection<IWebElement> DraftText
         {
             get { return this.driver.FindElements(By.XPath(".//div[@role='textbox']//div[text()='" + text + "']")); }
         }
 
-        public ReadOnlyCollection<IWebElement> draftAddressee
+        public ReadOnlyCollection<IWebElement> DraftAddressee
         {
             get { return this.driver.FindElements(By.XPath(".//div[@data-name='to']//div[@title='" + addressee + "']")); }
         }
 
-        public IWebElement sendButton
+        public IWebElement SendButton
         {
             get { return this.driver.FindElement(By.XPath(".//span[@title='Отправить']")); }
         }
 
-        public IWebElement closeButton
+        public IWebElement CloseButton
         {
             get { return this.driver.FindElement(By.XPath(".//span[@title='Закрыть']")); }
         }
 
-        public void findTopicAndClick()
+        public void FindTopicAndClick()
         {
-            findTopic.Click();
+            FindTopic.Click();
         }
-        public bool checkTopic()
+        public bool CheckTopic()
         {
-            return draftTopic.Count > 0;          
+            return DraftTopic.Count > 0;          
         }
 
-        public bool checkText()
+        public bool CheckText()
         {
             
-            return draftText.Count > 0;
+            return DraftText.Count > 0;
         }
 
-        public bool checkAddressee()
+        public bool CheckAddressee()
         {
-            return draftAddressee.Count > 0;
+            return DraftAddressee.Count > 0;
         }
 
-        public void clickSendButton()
+        public void ClickSendButton()
         {
-            sendButton.Click();
+            SendButton.Click();
         }
 
-        public EmailsContainer closeEmail()
+        public EmailsContainer CloseEmail()
         {
-            closeButton.Click();
+            CloseButton.Click();
             return new EmailsContainer(driver);
         }
     }

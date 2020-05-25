@@ -14,7 +14,7 @@ namespace Epam.Automation.Mentoring.Mail.Autotests.WebObjects
         public EmailsContainer(MyWebDriver driver)
         {
             //Объявляем переменные, которые могут понадобится
-            GetDataFromXml xml = new GetDataFromXml();
+            XmlReader xml = new XmlReader();
             List<string> testDataArray = xml.XmlXpath();
             this.addressee = testDataArray[0];
             this.topic = testDataArray[3];
@@ -22,30 +22,30 @@ namespace Epam.Automation.Mentoring.Mail.Autotests.WebObjects
             this.driver = driver;
         }
 
-        public IWebElement emailAndTopicToValidate
+        public IWebElement EmailAndTopicToValidate
         {
             get { return this.driver.FindElement(By.XPath("//div[@class='dataset-letters']//span[@title='" + addressee + "']" +
 "/parent::div/following-sibling::div[contains(@class, 'llc__item_title')]//span[text()='" + topic + "']")); }
         }
 
-        public ReadOnlyCollection<IWebElement> emailAndTopicToValidateCol
+        public ReadOnlyCollection<IWebElement> EmailAndTopicToValidateCol
         {
             get { return this.driver.FindElements(By.XPath("//div[@class='dataset-letters']//span[@title='" + addressee + "']" +
 "/parent::div/following-sibling::div[contains(@class, 'llc__item_title')]//span[text()='" + topic + "']")); }
         }
 
-        public DraftEmail openDraft()
+        public DraftEmail OpenDraft()
         {
-            emailAndTopicToValidate.Click();
+            EmailAndTopicToValidate.Click();
             return new DraftEmail(driver);
         }
 
-        public bool validateAddresseeAndTopic()
+        public bool ValidateAddresseeAndTopic()
         {
-            return emailAndTopicToValidateCol.Count > 0;
+            return EmailAndTopicToValidateCol.Count > 0;
         }
 
-        public void waitForEmailSent()
+        public void WaitForEmailSent()
         {
             driver.WaitForElementToDisappier(By.XPath("//div[@class='dataset-letters']//span[@title='" + addressee + "']" +
 "/parent::div/following-sibling::div[contains(@class, 'llc__item_title')]//span[text()='" + topic + "']"));
