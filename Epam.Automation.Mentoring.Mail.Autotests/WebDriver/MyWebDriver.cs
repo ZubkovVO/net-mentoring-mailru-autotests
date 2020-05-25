@@ -5,7 +5,7 @@ using System.Collections.ObjectModel;
 
 namespace Epam.Automation.Mentoring.Mail.Autotests.WebDriver
 {
-    class MyWebDriver : IWebDriver
+    public class MyWebDriver : IWebDriver
     {
         private IWebDriver webDriver;
         public string CurrentTest { get; set; }

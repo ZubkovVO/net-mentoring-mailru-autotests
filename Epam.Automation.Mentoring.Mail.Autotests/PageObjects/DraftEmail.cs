@@ -5,7 +5,7 @@ using System.Collections.ObjectModel;
 
 namespace Epam.Automation.Mentoring.Mail.Autotests.WebObjects
 {
-    class DraftEmail
+    public class DraftEmail
     {
         private MyWebDriver driver;
         private string addressee;

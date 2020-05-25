@@ -3,7 +3,7 @@ using OpenQA.Selenium;
 
 namespace Epam.Automation.Mentoring.Mail.Autotests.WebObjects
 {
-    class MailHomePage
+    public class MailHomePage
     {
         private MyWebDriver driver;
 

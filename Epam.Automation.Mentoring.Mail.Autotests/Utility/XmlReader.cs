@@ -3,7 +3,7 @@ using System.Xml.XPath;
 
 namespace Epam.Automation.Mentoring.Mail.Autotests
 {
-    class XmlReader
+    public class XmlReader
     {
         public List<string> XmlXpath()
         {
