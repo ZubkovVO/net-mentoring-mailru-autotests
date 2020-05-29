@@ -26,12 +26,23 @@ namespace Epam.Automation.Mentoring.Mail.Autotests.WebObjects
         public IWebElement Sent
         {
             get { return this.driver.FindElement(By.XPath(".//div[@class='nav-folders']//a[@href='/sent/']")); }
-        }    
+        }
+
+        
+        public bool SentIsCurrent
+        {
+            get { return this.driver.IsElementPresent(By.XPath("//a[contains(@class,'nav__item_active') and @href='/sent/']")); }
+        }
 
         public MailComposeNewEmail ComposeNewEmail()
         {
             Compose.Click();
             return new MailComposeNewEmail(driver);
+        }
+
+        public bool AreWeOnSentFolder()
+        {
+            return SentIsCurrent;
         }
 
         public EmailsContainer GoToDrafts()

@@ -1,6 +1,7 @@
 ﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
 using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 
 namespace Epam.Automation.Mentoring.Mail.Autotests.WebDriver
@@ -39,12 +40,25 @@ namespace Epam.Automation.Mentoring.Mail.Autotests.WebDriver
         {
             WaitForIsVisible(by);
             return webDriver.FindElement(by);
+        }
 
+        public bool IsElementPresent(By by)
+        {
+            WaitForIsVisible(by);
+            try
+            {
+                webDriver.FindElements(by);
+                return true;
+            }
+            catch (NoSuchElementException)
+            {
+                return false;
+            }
         }
 
         public void WaitForIsVisible(By by)
         {
-            var wait = new WebDriverWait(webDriver, new TimeSpan(0, 0, 30));
+            var wait = new WebDriverWait(webDriver, new TimeSpan(0, 0, 05));
             var element = wait.Until(condition =>
             {
                 try
@@ -52,11 +66,11 @@ namespace Epam.Automation.Mentoring.Mail.Autotests.WebDriver
                     var elementToBeDisplayed = webDriver.FindElement(by);
                     return elementToBeDisplayed.Displayed;
                 }
-                catch (StaleElementReferenceException)
+               catch (StaleElementReferenceException)
                 {
                     return false;
                 }
-                catch (NoSuchElementException)
+               catch (NoSuchElementException)
                 {
                     return false;
                 }
@@ -65,7 +79,7 @@ namespace Epam.Automation.Mentoring.Mail.Autotests.WebDriver
 
         public void WaitForElementToDisappier(By by)
         {
-            var wait = new WebDriverWait(webDriver, new TimeSpan(0, 0, 30));
+            var wait = new WebDriverWait(webDriver, new TimeSpan(0, 0, 10));
             var element = wait.Until(condition =>
             {
                 try
@@ -87,7 +101,6 @@ namespace Epam.Automation.Mentoring.Mail.Autotests.WebDriver
 
         public ReadOnlyCollection<IWebElement> FindElements(By by)
         {
-            WaitForIsVisible(by);
             return webDriver.FindElements(by);
         }
 

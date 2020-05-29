@@ -37,9 +37,9 @@ namespace Epam.Automation.Mentoring.Mail.Autotests.WebObjects
             get { return this.driver.FindElements(By.XPath(".//div[@role='textbox']//div[text()='" + text + "']")); }
         }
 
-        public ReadOnlyCollection<IWebElement> DraftAddressee
+        public bool DraftAddressee
         {
-            get { return this.driver.FindElements(By.XPath(".//div[@data-name='to']//div[@title='" + addressee + "']")); }
+            get { return this.driver.IsElementPresent(By.XPath(".//div[@data-name='to']//div[@title='" + addressee + "']")); }
         }
 
         public IWebElement SendButton
@@ -69,7 +69,7 @@ namespace Epam.Automation.Mentoring.Mail.Autotests.WebObjects
 
         public bool CheckAddressee()
         {
-            return DraftAddressee.Count > 0;
+            return DraftAddressee;
         }
 
         public void ClickSendButton()
