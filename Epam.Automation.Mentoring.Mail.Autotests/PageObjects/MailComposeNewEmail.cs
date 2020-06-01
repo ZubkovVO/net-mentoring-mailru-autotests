@@ -1,15 +1,14 @@
-﻿using Epam.Automation.Mentoring.Mail.Autotests.WebDriver;
+﻿using Epam.Automation.Mentoring.Mail.Autotests.PageObjects;
+using Epam.Automation.Mentoring.Mail.Autotests.WebDriver;
 using OpenQA.Selenium;
 
 namespace Epam.Automation.Mentoring.Mail.Autotests.WebObjects
 {
-    public class MailComposeNewEmail
+    public class MailComposeNewEmail : BasePage
     {
-        private readonly MyWebDriver driver;
-
-        public MailComposeNewEmail(MyWebDriver driver)
+        public MailComposeNewEmail(MyWebDriver driver) : base(driver)
         {
-            this.driver = driver;
+
         }
 
         public IWebElement Addressee

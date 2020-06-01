@@ -1,25 +1,23 @@
-﻿using Epam.Automation.Mentoring.Mail.Autotests.WebDriver;
+﻿using Epam.Automation.Mentoring.Mail.Autotests.PageObjects;
+using Epam.Automation.Mentoring.Mail.Autotests.WebDriver;
 using OpenQA.Selenium;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 
 namespace Epam.Automation.Mentoring.Mail.Autotests.WebObjects
 {
-    public class DraftEmail
+    public class DraftEmail : BasePage
     {
-        private readonly MyWebDriver driver;
         private readonly string addressee;
         private readonly string topic;
         private readonly string text;
 
-        public DraftEmail(MyWebDriver driver)
+        public DraftEmail(MyWebDriver driver) : base(driver)
         {
             //Объявляем переменные, которые могут понадобится
             this.addressee = TestDataProvider.Addressee;
             this.topic = TestDataProvider.Topic;
             this.text = TestDataProvider.Text;
-
-            this.driver = driver;
         }
 
         public ReadOnlyCollection<IWebElement> DraftTopic

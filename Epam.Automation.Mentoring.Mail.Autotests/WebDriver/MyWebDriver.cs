@@ -56,6 +56,12 @@ namespace Epam.Automation.Mentoring.Mail.Autotests.WebDriver
             }
         }
 
+        public void WaitForIsVisibleExtra(By by)
+        {
+            var wait = new WebDriverWait(webDriver, new TimeSpan(0, 0, 30));
+            var element = wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(by));
+        }
+
         public void WaitForIsVisible(By by)
         {
             var wait = new WebDriverWait(webDriver, new TimeSpan(0, 0, 05));

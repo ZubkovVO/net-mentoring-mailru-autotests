@@ -1,13 +1,13 @@
-﻿using Epam.Automation.Mentoring.Mail.Autotests.WebDriver;
+﻿using Epam.Automation.Mentoring.Mail.Autotests.PageObjects;
+using Epam.Automation.Mentoring.Mail.Autotests.WebDriver;
 using OpenQA.Selenium;
 
 namespace Epam.Automation.Mentoring.Mail.Autotests.WebObjects
 {
-    public class MailMainMenu
+    public class MailMainMenu : BasePage
     {
-        private readonly MyWebDriver driver;
 
-        public MailMainMenu(MyWebDriver driver)
+        public MailMainMenu(MyWebDriver driver) : base(driver)
         {
             this.driver = driver;
         }
