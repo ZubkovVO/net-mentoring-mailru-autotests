@@ -56,10 +56,32 @@ namespace Epam.Automation.Mentoring.Mail.Autotests.WebDriver
             }
         }
 
+        public bool AreElementsPresent(By by)
+        {
+            WaitForElementsVisible(by);
+            try
+            {
+                webDriver.FindElements(by);
+                return true;
+            }
+            catch (NoSuchElementException)
+            {
+                return false;
+            }
+        }
+
+        //Работа с одним элементом используя Support Package
         public void WaitForIsVisibleExtra(By by)
         {
-            var wait = new WebDriverWait(webDriver, new TimeSpan(0, 0, 30));
+            var wait = new WebDriverWait(webDriver, new TimeSpan(0, 0, 05));
             var element = wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(by));
+        }
+
+        //Попытка работы с элементами используя SupportPackage
+        public void WaitForElementsVisible(By by)
+        {
+            var wait = new WebDriverWait(webDriver, new TimeSpan(0, 0, 05));
+            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.VisibilityOfAllElementsLocatedBy(by));
         }
 
         public void WaitForIsVisible(By by)

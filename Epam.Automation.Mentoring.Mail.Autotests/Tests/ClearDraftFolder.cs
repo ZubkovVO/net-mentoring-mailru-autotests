@@ -35,7 +35,8 @@ namespace Epam.Automation.Mentoring.Mail.Autotests.Tests
             //Переходим в черновики и в зависимости от того, есть письма или нет выходим или удаляем письма          
             EmailsContainer emails = menu.GoToDrafts();
                         
-            if (emails.FolderIsEmptyM())
+            //Добавлена реализация с использованием SupportPackage (все равно не работает)
+            if (emails.FolderIsEmptyBool())
             {
                 home.ExitEmail();
             }

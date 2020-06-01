@@ -43,6 +43,11 @@ namespace Epam.Automation.Mentoring.Mail.Autotests.WebObjects
             get { return this.driver.FindElements(By.XPath("//span[text()='У вас нет незаконченных']")); }
         }
 
+        public bool FolderIsEmptyTextBool
+        {
+            get { return this.driver.AreElementsPresent(By.XPath("//span[text()='У вас нет незаконченных']")); }
+        }
+
 
 
         public IWebElement EmailCheckbox
@@ -82,7 +87,12 @@ namespace Epam.Automation.Mentoring.Mail.Autotests.WebObjects
 
         public bool FolderIsEmptyM()
         {
-            return FolderIsEmptyTextM.Count>0;
+            return FolderIsEmptyTextM.Count > 0;
+        }
+
+        public bool FolderIsEmptyBool()
+        {
+            return FolderIsEmptyTextBool;
         }
 
         public DraftEmail OpenDraft()
