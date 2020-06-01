@@ -10,15 +10,12 @@ using Xunit;
 
 namespace Epam.Automation.Mentoring.Mail.Autotests.Tests
 {
-    public class ClearDraftFolder : IDisposable
+    public class ClearDraftFolder : BaseTest
     {
 
-        private readonly MyWebDriver driver;
-
-        public ClearDraftFolder()
+        public ClearDraftFolder() : base()
         {
-            driver = new MyWebDriver(new ChromeDriver());
-            TestDataProvider.FetchFromXmlReader();
+
         }
 
         [Fact]
@@ -51,13 +48,7 @@ namespace Epam.Automation.Mentoring.Mail.Autotests.Tests
                 home.ExitEmail();
             }
 
-        }
-               
+        }             
 
-        public void Dispose()
-        {
-            Thread.Sleep(3000);
-            driver.Close();
-        }
     }
 }

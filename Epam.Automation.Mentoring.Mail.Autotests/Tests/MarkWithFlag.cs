@@ -10,17 +10,13 @@ using Xunit;
 
 namespace Epam.Automation.Mentoring.Mail.Autotests.Tests
 {
-    public class MarkWithFlag : IDisposable
+    public class MarkWithFlag : BaseTest
     {
-            private readonly MyWebDriver driver;
 
-
-            public MarkWithFlag()
+            public MarkWithFlag() : base()
             {
-                driver = new MyWebDriver(new ChromeDriver());
-                TestDataProvider.FetchFromXmlReader();
-            }
 
+            }
 
         [Fact]
         public void Mark_Email_With_Flag()
@@ -48,13 +44,6 @@ namespace Epam.Automation.Mentoring.Mail.Autotests.Tests
             Assert.True(emails.IsFlagOn());
 
         }
-
-        public void Dispose()
-        {
-            Thread.Sleep(3000);
-            driver.Close();
-        }
-
 
     }
 }

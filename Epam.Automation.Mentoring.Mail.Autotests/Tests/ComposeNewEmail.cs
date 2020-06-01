@@ -8,15 +8,12 @@ using Xunit;
 
 namespace Epam.Automation.Mentoring.Mail.Autotests.Tests
 {
-    public class ComposeNewEmail : IDisposable
+    public class ComposeNewEmail : BaseTest
     {        
-        private readonly MyWebDriver driver;
-        
 
-        public ComposeNewEmail()
+        public ComposeNewEmail() : base()
         {
-            driver = new MyWebDriver(new ChromeDriver());
-            TestDataProvider.FetchFromXmlReader();
+
         }
 
         [Fact]
@@ -28,8 +25,6 @@ namespace Epam.Automation.Mentoring.Mail.Autotests.Tests
             string password = TestDataProvider.Password;
             string topic = TestDataProvider.Topic;
             string text = TestDataProvider.Text;
-
-
 
             //Логинимся
             MailHomePage home = new MailHomePage(driver);
@@ -67,10 +62,5 @@ namespace Epam.Automation.Mentoring.Mail.Autotests.Tests
 
         }
 
-        public void Dispose()
-        {
-            Thread.Sleep(3000);
-            driver.Close();
-        }
     }
 }
