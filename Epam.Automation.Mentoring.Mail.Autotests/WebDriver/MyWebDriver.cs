@@ -24,9 +24,9 @@ namespace Epam.Automation.Mentoring.Mail.Autotests.WebDriver
 
         public string CurrentWindowHandle => throw new NotImplementedException();
 
-        public ReadOnlyCollection<string> WindowHandles => throw new NotImplementedException();
+        public ReadOnlyCollection<string> WindowHandles => webDriver.WindowHandles;
 
-        public void Close()
+    public void Close()
         {
             webDriver.Close();
         }
@@ -149,7 +149,7 @@ namespace Epam.Automation.Mentoring.Mail.Autotests.WebDriver
 
         public ITargetLocator SwitchTo()
         {
-            throw new NotImplementedException();
+            return webDriver.SwitchTo();
         }
     }
 }

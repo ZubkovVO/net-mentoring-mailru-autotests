@@ -20,7 +20,8 @@ namespace Epam.Automation.Mentoring.Mail.Autotests.Tests
         public void Dispose()
         {
             Thread.Sleep(3000);
-            driver.Close();
+
+            driver.Quit();
         }
     }
     

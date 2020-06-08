@@ -1,6 +1,7 @@
 ﻿using Epam.Automation.Mentoring.Mail.Autotests.PageObjects;
 using Epam.Automation.Mentoring.Mail.Autotests.WebDriver;
 using OpenQA.Selenium;
+using System.Linq;
 
 namespace Epam.Automation.Mentoring.Mail.Autotests.WebObjects
 {
@@ -34,6 +35,11 @@ namespace Epam.Automation.Mentoring.Mail.Autotests.WebObjects
             get { return this.driver.IsElementPresent(By.XPath("//a[contains(@class,'nav__item_active') and @href='/sent/']")); }
         }
 
+        public IWebElement Cloud
+        {
+            get { return this.driver.FindElement(By.XPath(".//div[contains(@class,'sidebar')]//a[@href='https://cloud.mail.ru']")); }
+        }
+
         public MailComposeNewEmail ComposeNewEmail()
         {
             Compose.Click();
@@ -55,6 +61,13 @@ namespace Epam.Automation.Mentoring.Mail.Autotests.WebObjects
         {
             Sent.Click();
             return new EmailsContainer(driver);
+        }
+
+        public CloudMainMenu GoToCloud()
+        {
+            Cloud.Click();
+            driver.SwitchTo().Window(driver.WindowHandles.Last());
+            return new CloudMainMenu(driver);
         }
 
     }
