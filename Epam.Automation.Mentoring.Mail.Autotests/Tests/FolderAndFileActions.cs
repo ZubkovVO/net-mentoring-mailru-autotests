@@ -1,9 +1,6 @@
 ﻿using Epam.Automation.Mentoring.Mail.Autotests.PageObjects;
 using Epam.Automation.Mentoring.Mail.Autotests.UIElements;
 using Epam.Automation.Mentoring.Mail.Autotests.WebObjects;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using Xunit;
 
 namespace Epam.Automation.Mentoring.Mail.Autotests.Tests
@@ -28,10 +25,19 @@ namespace Epam.Automation.Mentoring.Mail.Autotests.Tests
 
             //Переходим к меню и передаем инстанс драйвера дальше
             MailMainMenu menu = home.GoToMenu();
-
             CloudMainMenu cMenu = menu.GoToCloud();
-
             FilesContainer file = cMenu.ContentLoaded();
+
+            //Работаем внутри блока с файлами, вызываем контекстное меню и создаем папку
+            file.ContextClick();
+            file.CtxCreate();
+            file.CtxCreateFolder();
+            file.InputFolderNameAndAccept();
+            //Возвращаемся на главную, после создания папки
+            cMenu.GoToHome();
+            //Перетаскиваем файл в папку
+            file.MoveFileToFolder();
+            file.AcceptMoving();
 
         }
     }

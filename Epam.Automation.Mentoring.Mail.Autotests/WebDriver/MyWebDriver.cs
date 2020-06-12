@@ -1,20 +1,27 @@
 ﻿using OpenQA.Selenium;
+using OpenQA.Selenium.Chrome;
+using OpenQA.Selenium.Remote;
 using OpenQA.Selenium.Support.UI;
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 
 namespace Epam.Automation.Mentoring.Mail.Autotests.WebDriver
 {
     public class MyWebDriver : IWebDriver
     {
-        private readonly IWebDriver webDriver;
+        public readonly IWebDriver webDriver;
+
         public string CurrentTest { get; set; }
 
-        public MyWebDriver(IWebDriver webDriver)
+        public MyWebDriver()
         {
-            this.webDriver = webDriver;
+            var options = new ChromeOptions();
+            options.AddArguments("start-maximized");
+            webDriver = new RemoteWebDriver(new Uri("http://localhost:4444/wd/hub"), options);
+            /*var options = new FirefoxOptions();
+            webDriver = new RemoteWebDriver(new Uri("http://localhost:4444/wd/hub"), options);*/
         }
+
 
         public string Url { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
 
@@ -25,6 +32,7 @@ namespace Epam.Automation.Mentoring.Mail.Autotests.WebDriver
         public string CurrentWindowHandle => throw new NotImplementedException();
 
         public ReadOnlyCollection<string> WindowHandles => webDriver.WindowHandles;
+
 
     public void Close()
         {
@@ -151,5 +159,18 @@ namespace Epam.Automation.Mentoring.Mail.Autotests.WebDriver
         {
             return webDriver.SwitchTo();
         }
+
+        public void JsClick(IWebElement element)
+        {
+            IJavaScriptExecutor executor = (IJavaScriptExecutor)webDriver;
+            executor.ExecuteScript("arguments[0].click()", element);
+        }
+
+        public void JsHighlight(IWebElement element)
+        {
+            IJavaScriptExecutor executor = (IJavaScriptExecutor)webDriver;
+            executor.ExecuteScript("arguments[0].style.border='3px solid red'", element);
+        }
+
     }
 }

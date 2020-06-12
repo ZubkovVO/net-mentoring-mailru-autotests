@@ -1,10 +1,6 @@
 ﻿using Epam.Automation.Mentoring.Mail.Autotests.UIElements;
 using Epam.Automation.Mentoring.Mail.Autotests.WebDriver;
-using Epam.Automation.Mentoring.Mail.Autotests.WebObjects;
 using OpenQA.Selenium;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Epam.Automation.Mentoring.Mail.Autotests.PageObjects
 {
@@ -20,11 +16,22 @@ namespace Epam.Automation.Mentoring.Mail.Autotests.PageObjects
             get { return this.driver.FindElement(By.XPath(".//div[@id = 'content']")); }
         }
 
+        public IWebElement Home
+        {
+            get { return this.driver.FindElement(By.XPath("//a[@href = '/home/' and @data-name='Облако']")); }
+        }
+
         public FilesContainer ContentLoaded()
         {
             Content.Click();
             return new FilesContainer(driver);
         }
+
+        public void GoToHome()
+        {
+            Home.Click();
+        }
+
 
 
     }

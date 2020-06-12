@@ -1,9 +1,4 @@
-﻿using Epam.Automation.Mentoring.Mail.Autotests.WebDriver;
-using Epam.Automation.Mentoring.Mail.Autotests.WebObjects;
-using OpenQA.Selenium.Chrome;
-using System;
-using System.Collections.Generic;
-using System.Threading;
+﻿using Epam.Automation.Mentoring.Mail.Autotests.WebObjects;
 using Xunit;
 
 namespace Epam.Automation.Mentoring.Mail.Autotests.Tests
