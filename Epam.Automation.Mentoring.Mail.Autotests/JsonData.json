@@ -1,0 +1,10 @@
+{
+  "LoginData": [
+    [ "tst_atmp_2020q2", "Administratum4199"],
+    [ "tst_atmp_2020q2v2", "Administratum4199" ]
+  ],
+  "FullData": [
+    [ "tst_atmp_2020q2", "Administratum4199", "nrco@mail.ru", "Just for test 121", "Something for testing purposes" ],
+    [ "tst_atmp_2020q2v2", "Administratum4199", "nrco@mail.ru", "Just for test 121", "Something for testing purposes" ]
+  ]
+}

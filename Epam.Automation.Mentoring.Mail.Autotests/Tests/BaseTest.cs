@@ -20,5 +20,5 @@ namespace Epam.Automation.Mentoring.Mail.Autotests.Tests
             driver.Quit();
         }
     }
-    
+
 }

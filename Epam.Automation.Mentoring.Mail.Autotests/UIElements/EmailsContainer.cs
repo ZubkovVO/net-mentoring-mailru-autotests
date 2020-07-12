@@ -16,7 +16,6 @@ namespace Epam.Automation.Mentoring.Mail.Autotests.WebObjects
             //Объявляем переменные, которые могут понадобится
             this.addressee = TestDataProvider.Addressee;
             this.topic = TestDataProvider.Topic;
-
             this.driver = driver;
         }
 

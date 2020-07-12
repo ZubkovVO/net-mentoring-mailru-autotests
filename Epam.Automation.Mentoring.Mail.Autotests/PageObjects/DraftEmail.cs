@@ -1,4 +1,5 @@
-﻿using Epam.Automation.Mentoring.Mail.Autotests.PageObjects;
+﻿using Epam.Automation.Mentoring.Mail.Autotests.Entities;
+using Epam.Automation.Mentoring.Mail.Autotests.PageObjects;
 using Epam.Automation.Mentoring.Mail.Autotests.WebDriver;
 using OpenQA.Selenium;
 using System.Collections.ObjectModel;

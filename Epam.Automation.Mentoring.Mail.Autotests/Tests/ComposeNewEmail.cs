@@ -1,4 +1,6 @@
-﻿using Epam.Automation.Mentoring.Mail.Autotests.WebObjects;
+﻿using Epam.Automation.Mentoring.Mail.Autotests.Entities;
+using Epam.Automation.Mentoring.Mail.Autotests.Utility;
+using Epam.Automation.Mentoring.Mail.Autotests.WebObjects;
 using Xunit;
 
 namespace Epam.Automation.Mentoring.Mail.Autotests.Tests
@@ -6,33 +8,26 @@ namespace Epam.Automation.Mentoring.Mail.Autotests.Tests
     public class ComposeNewEmail : BaseTest
     {        
 
-        public ComposeNewEmail() : base()
+        [Theory]
+        [JsonFileData("JsonData.json", "FullData")]
+        public void Compose_New_Email(string login, string password, string addressee, string topic, string text)
         {
-
-        }
-
-        [Fact]
-        public void Compose_New_Email()
-        {
-            //Объявляем переменные, которые могут понадобится
-            string addressee = TestDataProvider.Addressee;
-            string email = TestDataProvider.Email;
-            string password = TestDataProvider.Password;
-            string topic = TestDataProvider.Topic;
-            string text = TestDataProvider.Text;
+            //Объявляем бизнес объекты и передаем в них значения из json
+            var user = new User(login, password);
+            var email = new Email(addressee, topic, text);
 
             //Логинимся
             MailHomePage home = new MailHomePage(driver);
-            home.Login(email, password);
+            home.Login(user.UserData[0], user.UserData[1]);
 
             //Переходим к меню и передаем инстанс драйвера дальше
             MailMainMenu menu = home.GoToMenu();
 
             //Приступаем к созданию нового письма
             MailComposeNewEmail newEmail = menu.ComposeNewEmail();
-            newEmail.FillAddressee(addressee);
-            newEmail.FillTopic(topic);
-            newEmail.FillText(text);
+            newEmail.FillAddressee(email.EmailData[0]);
+            newEmail.FillTopic(email.EmailData[1]);
+            newEmail.FillText(email.EmailData[2]);
             newEmail.ClickSaveButton();
             newEmail.ClickCloseButton();
 

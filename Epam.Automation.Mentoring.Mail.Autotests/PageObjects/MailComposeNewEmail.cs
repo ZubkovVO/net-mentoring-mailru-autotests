@@ -8,7 +8,7 @@ namespace Epam.Automation.Mentoring.Mail.Autotests.WebObjects
     {
         public MailComposeNewEmail(MyWebDriver driver) : base(driver)
         {
-
+           
         }
 
         public IWebElement Addressee

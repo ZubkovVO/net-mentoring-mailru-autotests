@@ -7,11 +7,6 @@ namespace Epam.Automation.Mentoring.Mail.Autotests.Tests
     public class ClearDraftFolder : BaseTest
     {
 
-        public ClearDraftFolder() : base()
-        {
-
-        }
-
         [Fact]
         public void If_Present_Delete_Emails_From_Draft()
         {

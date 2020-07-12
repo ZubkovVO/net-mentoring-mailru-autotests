@@ -7,11 +7,6 @@ namespace Epam.Automation.Mentoring.Mail.Autotests.Tests
     public class MarkWithFlag : BaseTest
     {
 
-            public MarkWithFlag() : base()
-            {
-
-            }
-
         [Fact]
         public void Mark_Email_With_Flag()
         {
