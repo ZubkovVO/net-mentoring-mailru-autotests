@@ -10,18 +10,22 @@ namespace Epam.Automation.Mentoring.Mail.Autotests.WebDriver
     public class MyWebDriver : IWebDriver
     {
         public readonly IWebDriver webDriver;
+        public static BrowserFactory.BrowserType CurrentBrowser;
+        private static string _browser;
 
         public string CurrentTest { get; set; }
 
         public MyWebDriver()
         {
-            var options = new ChromeOptions();
-            options.AddArguments("start-maximized");
-            webDriver = new RemoteWebDriver(new Uri("http://localhost:4444/wd/hub"), options);
-            /*var options = new FirefoxOptions();
-            webDriver = new RemoteWebDriver(new Uri("http://localhost:4444/wd/hub"), options);*/
+            InitParamas();
+            webDriver = BrowserFactory.GetDriver(CurrentBrowser);
         }
 
+        private static void InitParamas()
+        {
+            _browser = Configuration.Browser;
+            Enum.TryParse(_browser, out CurrentBrowser);
+        }
 
         public string Url { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
 
