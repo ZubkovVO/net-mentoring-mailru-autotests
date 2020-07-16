@@ -1,5 +1,7 @@
-﻿using Epam.Automation.Mentoring.Mail.Autotests.PageObjects;
+﻿using Epam.Automation.Mentoring.Mail.Autotests.Entities;
+using Epam.Automation.Mentoring.Mail.Autotests.PageObjects;
 using Epam.Automation.Mentoring.Mail.Autotests.UIElements;
+using Epam.Automation.Mentoring.Mail.Autotests.Utility;
 using Epam.Automation.Mentoring.Mail.Autotests.WebObjects;
 using Xunit;
 
@@ -12,12 +14,11 @@ namespace Epam.Automation.Mentoring.Mail.Autotests.Tests
         public void Create_Folder_And_Put_File_Inside()
         {
             //Объявляем переменные, которые могут понадобится
-            string email = TestDataProvider.Email;
-            string password = TestDataProvider.Password;
+            var user = new User(TestDataProvider.Email, TestDataProvider.Password);
 
             //Логинимся
             MailHomePage home = new MailHomePage(driver);
-            home.Login(email, password);
+            home.Login(user.UserData[0], user.UserData[1]);
 
             //Переходим к меню и передаем инстанс драйвера дальше
             MailMainMenu menu = home.GoToMenu();

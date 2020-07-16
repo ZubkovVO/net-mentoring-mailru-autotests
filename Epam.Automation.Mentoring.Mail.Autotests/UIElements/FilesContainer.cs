@@ -6,15 +6,16 @@ namespace Epam.Automation.Mentoring.Mail.Autotests.UIElements
 {
     public class FilesContainer
     {
-        private readonly MyWebDriver driver;
+        private readonly MyWebDriver driver = MyWebDriver.Instance;
         public FilesContainer(MyWebDriver driver)
         {
             this.driver = driver;
+            //this.driver = driver;
         }
 
         public IWebElement ClearWaterFile
         {
-            get { return this.driver.FindElement(By.XPath("//div[@data-id = '/Чистая вода.jpg']")); }
+            get { return this.driver.FindElement(By.XPath("//a[@data-id = '/Чистая вода.jpg']")); }
         }
 
         public IWebElement Content
@@ -24,7 +25,7 @@ namespace Epam.Automation.Mentoring.Mail.Autotests.UIElements
 
         public IWebElement CreateCtx
         {
-            get { return this.driver.FindElement(By.XPath("//div[@id='react-contextmenu']//div[@data-name = 'create']")); }
+            get { return this.driver.FindElement(By.XPath("//div[@id='react-dropdown']//div[@data-name = 'create']")); }
         }
 
         public IWebElement CreateFolderCtxt
@@ -39,12 +40,12 @@ namespace Epam.Automation.Mentoring.Mail.Autotests.UIElements
 
         public IWebElement CreateFolderAcceptButton
         {
-            get { return this.driver.FindElement(By.XPath("//button[@role='button' and text()='Создать']")); }
+            get { return this.driver.FindElement(By.XPath("//button[text()='Создать']")); }
         }
 
         public IWebElement Folder
         {
-            get { return this.driver.FindElement(By.XPath("//div[@data-id = '/TestFolder1']")); }
+            get { return this.driver.FindElement(By.XPath("//a[@data-id = '/TestFolder1']")); }
         }
 
         public IWebElement MoveButton
@@ -54,14 +55,14 @@ namespace Epam.Automation.Mentoring.Mail.Autotests.UIElements
 
         public void ContextClick()
         {
-            Actions action = new Actions(this.driver.webDriver);
+            Actions action = new Actions(MyWebDriver.GetDriver());
             action.MoveToElement(Content).ContextClick().Perform();  
             
         }
 
         public void CtxCreate()
         {
-            Actions action = new Actions(this.driver.webDriver);
+            Actions action = new Actions(MyWebDriver.GetDriver());
             action.MoveToElement(CreateCtx).Build().Perform();
             driver.JsHighlight(CreateCtx);
         }
@@ -73,8 +74,8 @@ namespace Epam.Automation.Mentoring.Mail.Autotests.UIElements
 
         public void InputFolderNameAndAccept()
         {
-            new Actions(this.driver.webDriver)
-                .SendKeys(Keys.Backspace)
+            new Actions(MyWebDriver.GetDriver())
+                 .SendKeys(Keys.Backspace)
                 .SendKeys(FolderNameInput, "TestFolder1")
                 .Click(CreateFolderAcceptButton)
                 .Build()
@@ -83,7 +84,7 @@ namespace Epam.Automation.Mentoring.Mail.Autotests.UIElements
 
         public void MoveFileToFolder()
         {
-            new Actions(this.driver.webDriver)
+            new Actions(MyWebDriver.GetDriver())
                 .MoveToElement(ClearWaterFile)
                 .DragAndDrop(ClearWaterFile, Folder)
                 .Build()
@@ -95,6 +96,6 @@ namespace Epam.Automation.Mentoring.Mail.Autotests.UIElements
         {
             MoveButton.Click();
         }
-
+       
     }
 }

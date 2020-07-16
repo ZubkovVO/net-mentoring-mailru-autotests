@@ -8,36 +8,33 @@ namespace Epam.Automation.Mentoring.Mail.Autotests.WebObjects
     public class MailMainMenu : BasePage
     {
 
-        public MailMainMenu(MyWebDriver driver) : base(driver)
-        {
-            this.driver = driver;
-        }
+        public MailMainMenu(MyWebDriver driver) : base(driver) { }
 
 
         public IWebElement Compose
         {
-            get { return this.driver.FindElement(By.XPath(".//span[@class='compose-button__wrapper']")); }
+            get { return driver.FindElement(By.XPath(".//span[@class='compose-button__wrapper']")); }
         }
 
         public IWebElement Drafts
         {
-            get { return this.driver.FindElement(By.XPath(".//div[@class='nav-folders']//a[@href='/drafts/']")); }
+            get { return driver.FindElement(By.XPath(".//div[@class='nav-folders']//a[@href='/drafts/']")); }
         }
 
         public IWebElement Sent
         {
-            get { return this.driver.FindElement(By.XPath(".//div[@class='nav-folders']//a[@href='/sent/']")); }
+            get { return driver.FindElement(By.XPath(".//div[@class='nav-folders']//a[@href='/sent/']")); }
         }
 
-        
+
         public bool SentIsCurrent
         {
-            get { return this.driver.IsElementPresent(By.XPath("//a[contains(@class,'nav__item_active') and @href='/sent/']")); }
+            get { return driver.IsElementPresent(By.XPath("//a[contains(@class,'nav__item_active') and @href='/sent/']")); }
         }
 
         public IWebElement Cloud
         {
-            get { return this.driver.FindElement(By.XPath(".//div[contains(@class,'sidebar')]//a[@href='https://cloud.mail.ru']")); }
+            get { return driver.FindElement(By.XPath(".//div[contains(@class,'sidebar')]//a[@href='https://cloud.mail.ru']")); }
         }
 
         public MailComposeNewEmail ComposeNewEmail()

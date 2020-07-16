@@ -6,34 +6,31 @@ namespace Epam.Automation.Mentoring.Mail.Autotests.WebObjects
 {
     public class MailComposeNewEmail : BasePage
     {
-        public MailComposeNewEmail(MyWebDriver driver) : base(driver)
-        {
-           
-        }
+        public MailComposeNewEmail(MyWebDriver driver) : base(driver) { }
 
         public IWebElement Addressee
         {
-            get { return this.driver.FindElement(By.XPath(".//div[@data-name='to']//input[starts-with(@type, 'text')]")); }
+            get { return driver.FindElement(By.XPath(".//div[@data-name='to']//input[starts-with(@type, 'text')]")); }
         }
 
         public IWebElement Topic
         {
-            get { return this.driver.FindElement(By.XPath(".//input[starts-with(@name, 'Subject')]")); }
+            get { return driver.FindElement(By.XPath(".//input[starts-with(@name, 'Subject')]")); }
         }
 
         public IWebElement MessageText
         {
-            get { return this.driver.FindElement(By.XPath(".//div[@role='textbox']/div[1]")); }
+            get { return driver.FindElement(By.XPath(".//div[@role='textbox']/div[1]")); }
         }
 
         public IWebElement SaveButton
         {
-            get { return this.driver.FindElement(By.XPath(".//span[@title='Сохранить']")); }
+            get { return driver.FindElement(By.XPath(".//span[@title='Сохранить']")); }
         }
 
         public IWebElement CloseButton
         {
-            get { return this.driver.FindElement(By.XPath(".//button[@title='Закрыть']")); }
+            get { return driver.FindElement(By.XPath(".//button[@title='Закрыть']")); }
         }
 
         public void FillAddressee(string to)

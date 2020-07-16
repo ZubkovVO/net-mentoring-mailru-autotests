@@ -3,8 +3,7 @@ using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Firefox;
 using OpenQA.Selenium.Remote;
 using System;
-using System.Collections.Generic;
-using System.Text;
+
 
 namespace Epam.Automation.Mentoring.Mail.Autotests.WebDriver
 {

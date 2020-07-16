@@ -6,10 +6,7 @@ namespace Epam.Automation.Mentoring.Mail.Autotests.PageObjects
 {
     public class CloudMainMenu : BasePage
     {
-        public CloudMainMenu(MyWebDriver driver) : base(driver)
-        {
-
-        }
+        public CloudMainMenu(MyWebDriver driver) : base(driver) { }
 
         public IWebElement Content
         {
@@ -18,7 +15,7 @@ namespace Epam.Automation.Mentoring.Mail.Autotests.PageObjects
 
         public IWebElement Home
         {
-            get { return this.driver.FindElement(By.XPath("//a[@href = '/home/' and @data-name='Облако']")); }
+            get { return this.driver.FindElement(By.XPath("//a[@href = '/home/' and @data-name='Облако']//span[text()='Облако']")); }
         }
 
         public FilesContainer ContentLoaded()
@@ -29,7 +26,15 @@ namespace Epam.Automation.Mentoring.Mail.Autotests.PageObjects
 
         public void GoToHome()
         {
-            Home.Click();
+            try
+            {
+                Home.Click();
+            }
+            catch (StaleElementReferenceException)
+            {
+                IWebElement cloud = driver.FindElement(By.XPath("//a[@href = '/home/']"));
+                cloud.Click();
+            }
         }
 
 

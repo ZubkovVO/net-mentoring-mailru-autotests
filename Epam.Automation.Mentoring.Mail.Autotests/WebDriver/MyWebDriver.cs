@@ -9,13 +9,14 @@ namespace Epam.Automation.Mentoring.Mail.Autotests.WebDriver
 {
     public class MyWebDriver : IWebDriver
     {
-        public readonly IWebDriver webDriver;
+        private static MyWebDriver _currentInstance;
+        private static IWebDriver webDriver; //public readonly
         public static BrowserFactory.BrowserType CurrentBrowser;
         private static string _browser;
 
         public string CurrentTest { get; set; }
 
-        public MyWebDriver()
+        private MyWebDriver()
         {
             InitParamas();
             webDriver = BrowserFactory.GetDriver(CurrentBrowser);
@@ -26,6 +27,8 @@ namespace Epam.Automation.Mentoring.Mail.Autotests.WebDriver
             _browser = Configuration.Browser;
             Enum.TryParse(_browser, out CurrentBrowser);
         }
+
+        public static MyWebDriver Instance => _currentInstance ?? (_currentInstance = new MyWebDriver());
 
         public string Url { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
 
@@ -157,6 +160,9 @@ namespace Epam.Automation.Mentoring.Mail.Autotests.WebDriver
         public void Quit()
         {
             webDriver.Quit();
+            _currentInstance = null;
+            webDriver = null;
+            _browser = null;
         }
 
         public ITargetLocator SwitchTo()
@@ -164,16 +170,21 @@ namespace Epam.Automation.Mentoring.Mail.Autotests.WebDriver
             return webDriver.SwitchTo();
         }
 
-        public void JsClick(IWebElement element)
+        public void JsClick(IWebElement element) //webDriver changed to GetDriver
         {
-            IJavaScriptExecutor executor = (IJavaScriptExecutor)webDriver;
+            IJavaScriptExecutor executor = (IJavaScriptExecutor)GetDriver();
             executor.ExecuteScript("arguments[0].click()", element);
         }
 
-        public void JsHighlight(IWebElement element)
+        public void JsHighlight(IWebElement element) //webDriver changed to GetDriver
         {
-            IJavaScriptExecutor executor = (IJavaScriptExecutor)webDriver;
+            IJavaScriptExecutor executor = (IJavaScriptExecutor)GetDriver();
             executor.ExecuteScript("arguments[0].style.border='3px solid red'", element);
+        }
+
+        public static IWebDriver GetDriver()
+        {
+            return webDriver;
         }
 
     }

@@ -7,29 +7,26 @@ namespace Epam.Automation.Mentoring.Mail.Autotests.WebObjects
     public class MailHomePage : BasePage
     {
 
-        public MailHomePage(MyWebDriver driver) : base(driver)
-        {
-
-        }
+        public MailHomePage(MyWebDriver driver) : base(driver) { }
 
         public IWebElement LoginField
         {
-            get { return this.driver.FindElement(By.Id("mailbox:login")); }
+            get { return driver.FindElement(By.Id("mailbox:login")); }
         }
 
         public IWebElement SubmitButton
         {
-            get { return this.driver.FindElement(By.Id("mailbox:submit")); }
+            get { return driver.FindElement(By.Id("mailbox:submit")); }
         }
 
         public IWebElement PasswordField
         {
-            get { return this.driver.FindElement(By.Id("mailbox:password")); }
+            get { return driver.FindElement(By.Id("mailbox:password")); }
         }
 
         public IWebElement Exit
         {
-            get { return this.driver.FindElement(By.XPath(".//a[@title='выход']")); }
+            get { return driver.FindElement(By.XPath(".//a[@title='выход']")); }
         }
 
         public MailMainMenu GoToMenu()
@@ -42,13 +39,13 @@ namespace Epam.Automation.Mentoring.Mail.Autotests.WebObjects
             Exit.Click();
         }
 
-        public void Login(string loginInput, string passwordInput)
+        public MailMainMenu Login(string loginInput, string passwordInput)
         {
-            driver.Navigate().GoToUrl("https://www.mail.ru");
             LoginField.SendKeys(loginInput);
             SubmitButton.Click();
             PasswordField.SendKeys(passwordInput);
             SubmitButton.Click();
+            return new MailMainMenu(driver);
         }
     }
 }

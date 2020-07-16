@@ -60,8 +60,7 @@ namespace Epam.Automation.Mentoring.Mail.Autotests.WebObjects
         }
 
         public bool CheckText()
-        {
-            
+        {            
             return DraftText.Count > 0;
         }
 

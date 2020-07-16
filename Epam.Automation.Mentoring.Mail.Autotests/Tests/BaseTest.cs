@@ -6,12 +6,13 @@ namespace Epam.Automation.Mentoring.Mail.Autotests.Tests
 {
     public abstract class BaseTest : IDisposable
     {
-        protected MyWebDriver driver;
+        protected static MyWebDriver driver = MyWebDriver.Instance;
 
         public BaseTest()
         {
-            driver = new MyWebDriver(/*new ChromeDriver()*/);
+            driver = MyWebDriver.Instance; //new MyWebDriver();
             TestDataProvider.FetchFromXmlReader();
+            driver.Navigate().GoToUrl("https://www.mail.ru");
         }
 
         public void Dispose()

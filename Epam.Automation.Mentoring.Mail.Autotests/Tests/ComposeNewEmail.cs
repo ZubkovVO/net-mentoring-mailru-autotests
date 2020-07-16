@@ -5,6 +5,7 @@ using Xunit;
 
 namespace Epam.Automation.Mentoring.Mail.Autotests.Tests
 {
+    [Collection("Sequential")]
     public class ComposeNewEmail : BaseTest
     {        
 
@@ -18,7 +19,7 @@ namespace Epam.Automation.Mentoring.Mail.Autotests.Tests
 
             //Логинимся
             MailHomePage home = new MailHomePage(driver);
-            home.Login(user.UserData[0], user.UserData[1]);
+           home.Login(user.UserData[0], user.UserData[1]);
 
             //Переходим к меню и передаем инстанс драйвера дальше
             MailMainMenu menu = home.GoToMenu();
@@ -49,7 +50,7 @@ namespace Epam.Automation.Mentoring.Mail.Autotests.Tests
 
             //Выходим из почты
             home.ExitEmail();
-
+           
         }
 
     }

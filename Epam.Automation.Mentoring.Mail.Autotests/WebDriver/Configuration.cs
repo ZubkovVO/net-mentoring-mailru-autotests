@@ -12,7 +12,7 @@ namespace Epam.Automation.Mentoring.Mail.Autotests.WebDriver
 			return ConfigurationManager.AppSettings[var] ?? defaultValue; //что это??
 		}
 
-		public static string Browser => GetEnviromentVar("Browser", "RemoteChrome");
+		public static string Browser => GetEnviromentVar("Browser", "Chrome");
 
 	}
 }
