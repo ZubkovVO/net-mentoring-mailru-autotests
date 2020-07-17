@@ -8,6 +8,11 @@ namespace Epam.Automation.Mentoring.Mail.Autotests.Tests
     public class MarkWithFlag : BaseTest
     {
 
+        public MarkWithFlag()
+        {
+            TestDataProvider.FetchFromXmlReader();
+        }
+
         [Fact]
         public void Mark_Email_With_Flag()
         {
@@ -20,7 +25,7 @@ namespace Epam.Automation.Mentoring.Mail.Autotests.Tests
             home.Login(email, password);
 
             //Переходим к меню и передаем инстанс драйвера дальше
-         /*   MailMainMenu menu = home.GoToMenu();
+            MailMainMenu menu = home.GoToMenu();
 
             //Переходим в черновики и в зависимости от того, есть письма или нет выходим или удаляем письма          
             EmailsContainer emails = menu.GoToSent();
@@ -32,7 +37,7 @@ namespace Epam.Automation.Mentoring.Mail.Autotests.Tests
             folderMenu.ClickMore();
             folderMenu.MarkWithFlag();
             Assert.True(emails.IsFlagOn());
-         */
+
         }
 
     }

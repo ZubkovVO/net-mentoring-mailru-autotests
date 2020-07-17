@@ -9,6 +9,11 @@ namespace Epam.Automation.Mentoring.Mail.Autotests.Tests
     public class ClearDraftFolder : BaseTest
     {
 
+        public ClearDraftFolder()
+        {
+            TestDataProvider.FetchFromXmlReader();
+        }
+
         [Fact]
         public void If_Present_Delete_Emails_From_Draft()
         {
@@ -20,7 +25,7 @@ namespace Epam.Automation.Mentoring.Mail.Autotests.Tests
             home.Login(user.UserData[0], user.UserData[1]);
 
             //Переходим к меню и передаем инстанс драйвера дальше
-      /*      MailMainMenu menu = home.GoToMenu();
+            MailMainMenu menu = home.GoToMenu();
 
             //Переходим в черновики и в зависимости от того, есть письма или нет выходим или удаляем письма          
             EmailsContainer emails = menu.GoToDrafts();
@@ -37,7 +42,7 @@ namespace Epam.Automation.Mentoring.Mail.Autotests.Tests
                 folderMenu.Delete();
                 Assert.True(emails.FolderIsEmpty());
                 home.ExitEmail();
-            }*/
+            }
 
         }             
 

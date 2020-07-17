@@ -9,6 +9,10 @@ namespace Epam.Automation.Mentoring.Mail.Autotests.Tests
 {
     public class FolderAndFileActions : BaseTest
     {
+        public FolderAndFileActions()
+        {
+            TestDataProvider.FetchFromXmlReader();
+        }
 
         [Fact]
         public void Create_Folder_And_Put_File_Inside()

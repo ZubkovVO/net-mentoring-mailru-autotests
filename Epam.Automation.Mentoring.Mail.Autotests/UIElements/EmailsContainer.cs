@@ -11,6 +11,8 @@ namespace Epam.Automation.Mentoring.Mail.Autotests.WebObjects
         private readonly string addressee;
         private readonly string topic;
 
+        
+
         public EmailsContainer(MyWebDriver driver)
         {
             //Объявляем переменные, которые могут понадобится

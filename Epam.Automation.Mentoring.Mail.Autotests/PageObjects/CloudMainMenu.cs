@@ -34,6 +34,7 @@ namespace Epam.Automation.Mentoring.Mail.Autotests.PageObjects
             {
                 IWebElement cloud = driver.FindElement(By.XPath("//a[@href = '/home/']"));
                 cloud.Click();
+                cloud.Click(); //refactor later
             }
         }
 

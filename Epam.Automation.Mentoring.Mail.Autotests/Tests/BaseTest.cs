@@ -11,7 +11,6 @@ namespace Epam.Automation.Mentoring.Mail.Autotests.Tests
         public BaseTest()
         {
             driver = MyWebDriver.Instance; //new MyWebDriver();
-            TestDataProvider.FetchFromXmlReader();
             driver.Navigate().GoToUrl("https://www.mail.ru");
         }
 
