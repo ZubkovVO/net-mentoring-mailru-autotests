@@ -10,7 +10,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace Epam.Automation.Mentoring.Mail.Autotests.BDDScenarious
+namespace Epam.Automation.Mentoring.Mail.Autotests.BDDScenarios
 {
     using TechTalk.SpecFlow;
     using System;
@@ -28,7 +28,7 @@ namespace Epam.Automation.Mentoring.Mail.Autotests.BDDScenarious
         
         private Xunit.Abstractions.ITestOutputHelper _testOutputHelper;
         
-#line 1 "SpecFlowFeature1.feature"
+#line 1 "EmailLoginTest.feature"
 #line hidden
         
         public LoginFeature(LoginFeature.FixtureData fixtureData, Epam_Automation_Mentoring_Mail_Autotests_XUnitAssemblyFixture assemblyFixture, Xunit.Abstractions.ITestOutputHelper testOutputHelper)

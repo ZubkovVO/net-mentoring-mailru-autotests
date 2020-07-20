@@ -1,10 +1,7 @@
 ﻿using Epam.Automation.Mentoring.Mail.Autotests.Entities;
 using Epam.Automation.Mentoring.Mail.Autotests.Tests;
-using Epam.Automation.Mentoring.Mail.Autotests.Utility;
 using Epam.Automation.Mentoring.Mail.Autotests.WebObjects;
-using System;
 using TechTalk.SpecFlow;
-using Xunit;
 
 namespace Epam.Automation.Mentoring.Mail.Autotests
 {
@@ -25,7 +22,7 @@ namespace Epam.Automation.Mentoring.Mail.Autotests
             var user = new User(login, password);
             //Логинимся
             MailHomePage home = new MailHomePage(driver);
-           // home.Login(user.UserData[0], user.UserData[1]);
+            home.Login(user);
             //ScenarioContext.Current.Pending();
         }
         
