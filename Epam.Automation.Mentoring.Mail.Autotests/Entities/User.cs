@@ -1,22 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Epam.Automation.Mentoring.Mail.Autotests.Entities
+﻿namespace Epam.Automation.Mentoring.Mail.Autotests.Entities
 {
     public class User
     {
-        private readonly string _login;
-        private readonly string _password;
+        public string[] UserData { get; private set; }
+        public string login { get; private set; }
+        public string password { get; private set; }
 
-        public string[] UserData { get; private set; } 
-
-        public User(string login, string password)
+        public User(string _login, string _password)
         {
-            this._login = login;
-            this._password = password;
-
-            UserData = new[] { this._login, this._password };
+            login = _login;
+            password = _password;
         }
     }
 }

@@ -22,7 +22,7 @@ namespace Epam.Automation.Mentoring.Mail.Autotests.Tests
 
             //Логинимся
             MailHomePage home = new MailHomePage(driver);
-            home.Login(user.UserData[0], user.UserData[1]);
+            home.Login(user);
 
             //Переходим к меню и передаем инстанс драйвера дальше
             MailMainMenu menu = home.GoToMenu();

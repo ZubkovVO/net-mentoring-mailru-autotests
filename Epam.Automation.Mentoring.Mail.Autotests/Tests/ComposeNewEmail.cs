@@ -7,7 +7,11 @@ namespace Epam.Automation.Mentoring.Mail.Autotests.Tests
 {
     [Collection("Sequential")]
     public class ComposeNewEmail : BaseTest
-    {        
+    {
+        public ComposeNewEmail()
+        {
+            TestDataProvider.FetchFromXmlReader();
+        }
 
         [Theory]
         [JsonFileData("JsonData.json", "FullData")]
@@ -19,16 +23,14 @@ namespace Epam.Automation.Mentoring.Mail.Autotests.Tests
 
             //Логинимся
             MailHomePage home = new MailHomePage(driver);
-           home.Login(user.UserData[0], user.UserData[1]);
+            home.Login(user);
 
             //Переходим к меню и передаем инстанс драйвера дальше
             MailMainMenu menu = home.GoToMenu();
 
             //Приступаем к созданию нового письма
             MailComposeNewEmail newEmail = menu.ComposeNewEmail();
-            newEmail.FillAddressee(email.EmailData[0]);
-            newEmail.FillTopic(email.EmailData[1]);
-            newEmail.FillText(email.EmailData[2]);
+            newEmail.InputEmailData(email);
             newEmail.ClickSaveButton();
             newEmail.ClickCloseButton();
 
@@ -50,8 +52,6 @@ namespace Epam.Automation.Mentoring.Mail.Autotests.Tests
 
             //Выходим из почты
             home.ExitEmail();
-           
         }
-
     }
 }

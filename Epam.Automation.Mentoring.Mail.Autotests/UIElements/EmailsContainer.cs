@@ -2,6 +2,7 @@
 using Epam.Automation.Mentoring.Mail.Autotests.WebDriver;
 using OpenQA.Selenium;
 using System.Collections.ObjectModel;
+using System.Threading;
 
 namespace Epam.Automation.Mentoring.Mail.Autotests.WebObjects
 {
@@ -9,9 +10,7 @@ namespace Epam.Automation.Mentoring.Mail.Autotests.WebObjects
     {
         private readonly MyWebDriver driver;
         private readonly string addressee;
-        private readonly string topic;
-
-        
+        private readonly string topic;        
 
         public EmailsContainer(MyWebDriver driver)
         {
@@ -97,6 +96,7 @@ namespace Epam.Automation.Mentoring.Mail.Autotests.WebObjects
 
         public DraftEmail OpenDraft()
         {
+            Thread.Sleep(1000);
             EmailAndTopicToValidate.Click();
             return new DraftEmail(driver);
         }

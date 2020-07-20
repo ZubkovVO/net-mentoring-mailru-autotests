@@ -1,4 +1,5 @@
-﻿using Epam.Automation.Mentoring.Mail.Autotests.PageObjects;
+﻿using Epam.Automation.Mentoring.Mail.Autotests.Entities;
+using Epam.Automation.Mentoring.Mail.Autotests.PageObjects;
 using Epam.Automation.Mentoring.Mail.Autotests.WebDriver;
 using OpenQA.Selenium;
 
@@ -36,6 +37,13 @@ namespace Epam.Automation.Mentoring.Mail.Autotests.WebObjects
         public void FillAddressee(string to)
         {
             Addressee.SendKeys(to);
+        }
+
+        public void InputEmailData(Email email)
+        {
+            Addressee.SendKeys(email.addressee);
+            Topic.SendKeys(email.topic);
+            MessageText.SendKeys(email.text);
         }
 
         public void FillTopic(string topicInput)

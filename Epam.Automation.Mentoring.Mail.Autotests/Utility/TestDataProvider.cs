@@ -21,7 +21,5 @@ namespace Epam.Automation.Mentoring.Mail.Autotests
             Topic = testDataArray[3];
             Text = testDataArray[4];
         }
-
-
     }
 }

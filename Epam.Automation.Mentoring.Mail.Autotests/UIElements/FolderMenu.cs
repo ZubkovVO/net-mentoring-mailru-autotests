@@ -6,15 +6,9 @@ namespace Epam.Automation.Mentoring.Mail.Autotests.UIElements
     public class FolderMenu
     {
         private readonly MyWebDriver driver;
-        private readonly string addressee;
-        private readonly string topic;
 
         public FolderMenu(MyWebDriver driver)
         {
-            //Объявляем переменные, которые могут понадобится
-            this.addressee = TestDataProvider.Addressee;
-            this.topic = TestDataProvider.Topic;
-
             this.driver = driver;
         }
 

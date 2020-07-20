@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Text;
+﻿using System.Configuration;
 
 namespace Epam.Automation.Mentoring.Mail.Autotests.WebDriver
 {
-	public class Configuration
+    public class Configuration
 	{
 		public static string GetEnviromentVar(string var, string defaultValue)
 		{

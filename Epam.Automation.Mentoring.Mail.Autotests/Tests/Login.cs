@@ -1,9 +1,6 @@
 ﻿using Epam.Automation.Mentoring.Mail.Autotests.Entities;
 using Epam.Automation.Mentoring.Mail.Autotests.Utility;
 using Epam.Automation.Mentoring.Mail.Autotests.WebObjects;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using Xunit;
 
 namespace Epam.Automation.Mentoring.Mail.Autotests.Tests
@@ -19,12 +16,10 @@ namespace Epam.Automation.Mentoring.Mail.Autotests.Tests
 
             //Логинимся
             MailHomePage home = new MailHomePage(driver);
-            home.Login(user.UserData[0], user.UserData[1]);
+            home.Login(user) ;
 
             //Выходим из почты
             home.ExitEmail();
-
         }
     }
-
 }

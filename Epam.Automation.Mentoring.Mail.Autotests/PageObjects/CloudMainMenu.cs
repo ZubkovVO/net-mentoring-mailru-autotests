@@ -37,8 +37,5 @@ namespace Epam.Automation.Mentoring.Mail.Autotests.PageObjects
                 cloud.Click(); //refactor later
             }
         }
-
-
-
     }
 }

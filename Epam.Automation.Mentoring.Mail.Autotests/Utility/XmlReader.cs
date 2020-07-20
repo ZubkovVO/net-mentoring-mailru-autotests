@@ -25,6 +25,5 @@ namespace Epam.Automation.Mentoring.Mail.Autotests
             dataArray.Add(emailText.Value); //4
             return dataArray;
         }
-
     }
 }
