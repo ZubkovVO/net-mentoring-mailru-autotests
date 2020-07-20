@@ -41,9 +41,9 @@ namespace Epam.Automation.Mentoring.Mail.Autotests.WebObjects
 
         public void InputEmailData(Email email)
         {
-            Addressee.SendKeys(email.addressee);
-            Topic.SendKeys(email.topic);
-            MessageText.SendKeys(email.text);
+            Addressee.SendKeys(email.Addressee);
+            Topic.SendKeys(email.Topic);
+            MessageText.SendKeys(email.Text);
         }
 
         public void FillTopic(string topicInput)

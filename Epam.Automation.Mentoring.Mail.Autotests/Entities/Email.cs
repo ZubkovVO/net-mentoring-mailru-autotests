@@ -2,15 +2,15 @@
 {
     public class Email
     {
-        public string addressee { get; private set; }
-        public string topic { get; private set; }
-        public string text { get; private set; }
+        public string Addressee { get; private set; }
+        public string Topic { get; private set; }
+        public string Text { get; private set; }
 
         public Email(string _addressee, string _topic, string _text)
         {
-            addressee = _addressee;
-            topic = _topic;
-            text = _text;
+            Addressee = _addressee;
+            Topic = _topic;
+            Text = _text;
 
         }
     }

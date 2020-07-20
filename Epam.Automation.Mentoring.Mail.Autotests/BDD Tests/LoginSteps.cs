@@ -25,8 +25,7 @@ namespace Epam.Automation.Mentoring.Mail.Autotests
             var user = new User(login, password);
             //Логинимся
             MailHomePage home = new MailHomePage(driver);
-           // home.Login(user.UserData[0], user.UserData[1]);
-            //ScenarioContext.Current.Pending();
+            home.Login(user);
         }
         
         [When(@"I press submit")]

@@ -2,14 +2,13 @@
 {
     public class User
     {
-        public string[] UserData { get; private set; }
-        public string login { get; private set; }
-        public string password { get; private set; }
+        public string Login { get; private set; }
+        public string Password { get; private set; }
 
         public User(string _login, string _password)
         {
-            login = _login;
-            password = _password;
+            Login = _login;
+            Password = _password;
         }
     }
 }

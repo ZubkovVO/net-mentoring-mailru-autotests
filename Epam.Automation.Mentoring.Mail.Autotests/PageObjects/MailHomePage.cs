@@ -43,9 +43,9 @@ namespace Epam.Automation.Mentoring.Mail.Autotests.WebObjects
 
         public MailMainMenu Login(User user)
         {
-            LoginField.SendKeys(user.login);
+            LoginField.SendKeys(user.Login);
             SubmitButton.Click();
-            PasswordField.SendKeys(user.password);
+            PasswordField.SendKeys(user.Password);
             SubmitButton.Click();
             return new MailMainMenu(driver);
         }
