@@ -8,6 +8,7 @@ namespace Epam.Automation.Mentoring.Mail.Autotests.Tests
     [Collection("Sequential")]
     public class ComposeNewEmail : BaseTest
     {
+        //SomeFixture fixture;
         public ComposeNewEmail()
         {
             TestDataProvider.FetchFromXmlReader();
@@ -17,41 +18,51 @@ namespace Epam.Automation.Mentoring.Mail.Autotests.Tests
         [JsonFileData("JsonData.json", "FullData")]
         public void Compose_New_Email(string login, string password, string addressee, string topic, string text)
         {
-            //Объявляем бизнес объекты и передаем в них значения из json
-            var user = new User(login, password);
-            var email = new Email(addressee, topic, text);
+            testVar = new MethodNameIdentifier().TraceMessage();
 
-            //Логинимся
-            MailHomePage home = new MailHomePage(driver);
-            home.Login(user);
+            UITest(() =>
+            {
 
-            //Переходим к меню и передаем инстанс драйвера дальше
-            MailMainMenu menu = home.GoToMenu();
+                //Объявляем бизнес объекты и передаем в них значения из json
+                var user = new User(login, password);
+                var email = new Email(addressee, topic, text);
 
-            //Приступаем к созданию нового письма
-            MailComposeNewEmail newEmail = menu.ComposeNewEmail();
-            newEmail.InputEmailData(email);
-            newEmail.ClickSaveButton();
-            newEmail.ClickCloseButton();
+                //Логинимся
+                MailHomePage home = new MailHomePage(driver);
+                home.Login(user);
 
-            //Переходим в черновики
-            EmailsContainer emails = menu.GoToDrafts();
+                //Переходим к меню и передаем инстанс драйвера дальше
+                MailMainMenu menu = home.GoToMenu();
 
-            //Открываем нужный черновик
-            DraftEmail draft = emails.OpenDraft();
-            Assert.True(draft.CheckAddressee());
-            Assert.True(draft.CheckTopic());
-            Assert.True(draft.CheckText());
-            draft.ClickSendButton();
-            draft.CloseEmail();
-            emails.WaitForEmailSent();
+                //Приступаем к созданию нового письма
+                MailComposeNewEmail newEmail = menu.ComposeNewEmail();
+                newEmail.InputEmailData(email);
+                newEmail.ClickSaveButton();
+                newEmail.ClickCloseButton();
 
-            //Переходим в отправленные
-            menu.GoToSent();
-            Assert.True(emails.ValidateAddresseeAndTopic());
+                //Переходим в черновики
+                EmailsContainer emails = menu.GoToDrafts();
 
-            //Выходим из почты
-            home.ExitEmail();
+                //Открываем нужный черновик
+                DraftEmail draft = emails.OpenDraft();
+                Assert.True(draft.CheckAddressee());
+                Assert.True(draft.CheckTopic());
+                Assert.True(draft.CheckText());
+                draft.ClickSendButton();
+                draft.CloseEmail();
+                emails.WaitForEmailSent();
+
+                //Переходим в отправленные
+                menu.GoToSent();
+                Assert.True(emails.ValidateAddresseeAndTopic());
+
+                //Выходим из почты
+                home.ExitEmail();
+
+            });
+
+
+
         }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Remote;
+using OpenQA.Selenium.Support.Extensions;
 using OpenQA.Selenium.Support.UI;
 using System;
 using System.Collections.ObjectModel;
@@ -40,8 +41,14 @@ namespace Epam.Automation.Mentoring.Mail.Autotests.WebDriver
 
         public ReadOnlyCollection<string> WindowHandles => webDriver.WindowHandles;
 
+        public interface ITakesScreenshot
+        {
+            Screenshot GetScreenshot();
+        }
 
-    public void Close()
+
+
+        public void Close()
         {
             webDriver.Close();
         }
@@ -109,11 +116,11 @@ namespace Epam.Automation.Mentoring.Mail.Autotests.WebDriver
                     var elementToBeDisplayed = webDriver.FindElement(by);
                     return elementToBeDisplayed.Displayed;
                 }
-               catch (StaleElementReferenceException)
+                catch (StaleElementReferenceException)
                 {
                     return false;
                 }
-               catch (NoSuchElementException)
+                catch (NoSuchElementException)
                 {
                     return false;
                 }
@@ -149,7 +156,7 @@ namespace Epam.Automation.Mentoring.Mail.Autotests.WebDriver
 
         public IOptions Manage()
         {
-           return webDriver.Manage();
+            return webDriver.Manage();
         }
 
         public INavigation Navigate()
@@ -186,6 +193,5 @@ namespace Epam.Automation.Mentoring.Mail.Autotests.WebDriver
         {
             return webDriver;
         }
-
     }
 }

@@ -1,5 +1,6 @@
 ﻿using Epam.Automation.Mentoring.Mail.Autotests.Entities;
 using Epam.Automation.Mentoring.Mail.Autotests.UIElements;
+using Epam.Automation.Mentoring.Mail.Autotests.Utility;
 using Epam.Automation.Mentoring.Mail.Autotests.WebObjects;
 using Xunit;
 
@@ -17,26 +18,36 @@ namespace Epam.Automation.Mentoring.Mail.Autotests.Tests
         [Fact]
         public void Mark_Email_With_Flag()
         {
-            //Объявляем переменные, которые могут понадобится
-            var user = new User(TestDataProvider.Email, TestDataProvider.Password);
+            testVar = new MethodNameIdentifier().TraceMessage();
 
-            //Логинимся
-            MailHomePage home = new MailHomePage(driver);
-            home.Login(user);
+            UITest(() =>
+            {
 
-            //Переходим к меню и передаем инстанс драйвера дальше
-            MailMainMenu menu = home.GoToMenu();
+                //Объявляем переменные, которые могут понадобится
+                var user = new User(TestDataProvider.Email, TestDataProvider.Password);
 
-            //Переходим в черновики и в зависимости от того, есть письма или нет выходим или удаляем письма          
-            EmailsContainer emails = menu.GoToSent();
-            Assert.True(menu.AreWeOnSentFolder());
-            emails.SelectEmail();
-            Assert.True(emails.IsCheckboxChecked());
+                //Логинимся
+                MailHomePage home = new MailHomePage(driver);
+                home.Login(user);
 
-            FolderMenu folderMenu = emails.GoToFolderMenu();
-            folderMenu.ClickMore();
-            folderMenu.MarkWithFlag();
-            Assert.True(emails.IsFlagOn());
+                //Переходим к меню и передаем инстанс драйвера дальше
+                MailMainMenu menu = home.GoToMenu();
+
+                //Переходим в черновики и в зависимости от того, есть письма или нет выходим или удаляем письма          
+                EmailsContainer emails = menu.GoToSent();
+                Assert.True(menu.AreWeOnSentFolder());
+                emails.SelectEmail();
+                Assert.True(emails.IsCheckboxChecked());
+
+                FolderMenu folderMenu = emails.GoToFolderMenu();
+                folderMenu.ClickMore();
+                folderMenu.MarkWithFlag();
+                Assert.True(emails.IsFlagOn());
+
+            });
+
+
+
         }
     }
 }

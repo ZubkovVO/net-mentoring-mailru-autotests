@@ -2,7 +2,6 @@
 {
     public class User
     {
-        public string[] UserData { get; private set; }
         public string login { get; private set; }
         public string password { get; private set; }
 

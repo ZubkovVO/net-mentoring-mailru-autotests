@@ -3,23 +3,18 @@ using Epam.Automation.Mentoring.Mail.Autotests.Tests;
 using Epam.Automation.Mentoring.Mail.Autotests.WebObjects;
 using TechTalk.SpecFlow;
 
-namespace Epam.Automation.Mentoring.Mail.Autotests
+/*namespace Epam.Automation.Mentoring.Mail.Autotests
 {
     [Binding]
-    public class LoginSteps : BaseTest
+    public class LoginSteps
     {
-        [Given(@"I have navigated to the home page")]
-        public void GivenIHaveNavigatedToTheHomePage()
-        {
-           // ScenarioContext.Current.Pending();
-        }
         
-        [Given(@"I have entered the email and password")]
-        public void GivenIHaveEnteredTheEmailAndPassword()
+        [Given(@"I have entered the (.*) and (.*)")]
+        public void GivenIHaveEnteredTheEmailAndPassword(string p0, string p1)
         {
             var login = "tst_atmp_2020q2";
             var password = "Administratum4199";
-            var user = new User(login, password);
+            var user = new User(p0, p1);
             //Логинимся
             MailHomePage home = new MailHomePage(driver);
             home.Login(user);
@@ -40,4 +35,4 @@ namespace Epam.Automation.Mentoring.Mail.Autotests
             //ScenarioContext.Current.Pending();
         }
     }
-}
+}*/
