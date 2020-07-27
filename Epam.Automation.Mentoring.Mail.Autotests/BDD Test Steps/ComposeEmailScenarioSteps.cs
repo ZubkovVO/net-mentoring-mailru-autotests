@@ -1,35 +1,35 @@
 ﻿using Epam.Automation.Mentoring.Mail.Autotests.Entities;
-using Epam.Automation.Mentoring.Mail.Autotests.Tests;
 using Epam.Automation.Mentoring.Mail.Autotests.WebDriver;
 using Epam.Automation.Mentoring.Mail.Autotests.WebObjects;
+using System;
 using System.Threading;
 using TechTalk.SpecFlow;
 using Xunit;
 
-namespace Epam.Automation.Mentoring.Mail.Autotests
+namespace Epam.Automation.Mentoring.Mail.Autotests.BDD_Test_Steps
 {
+
     [Binding]
-    public class CreateNewEmailSteps
+    public class ComposeEmailScenarioSteps
     {
         protected static MyWebDriver driver = MyWebDriver.Instance;
 
-        public CreateNewEmailSteps()
+        public ComposeEmailScenarioSteps()
         {
             driver = MyWebDriver.Instance;
             TestDataProvider.FetchFromXmlReader();
         }
 
-       
         Email email = new Email("nrco@mail.ru", "Just for test 121", "Something for testing purposes");
-                
+
         [Given(@"I navigated to the home page")]
-        public void GivenNavigatedToTheHomePage()
+        public void GivenINavigatedToTheHomePage()
         {
             driver.Navigate().GoToUrl("https://www.mail.ru");
         }
         
-        [Given(@"logged in the email using (.*) and (.*)")]
-        public void GivenLoggedInTheEmail(string p0, string p1)
+        [Given(@"I logged in to email using ([aA-zZ0-9]+) and (\w+)")]
+        public void GivenILoggedInToEmailUsingTst_Atmp_AndAdministratum(string p0, string p1)
         {
             User user = new User(p0, p1);
             MailHomePage home = new MailHomePage(driver);
@@ -42,16 +42,8 @@ namespace Epam.Automation.Mentoring.Mail.Autotests
             MailMainMenu menu = new MailMainMenu(driver);
             MailComposeNewEmail newEmail = menu.ComposeNewEmail();
             newEmail.InputEmailData(email);
-
-        }
-        
-        [Given(@"I saved the email")]
-        public void GivenISavedTheEmail()
-        {
-            MailComposeNewEmail newEmail = new MailComposeNewEmail(driver);
             newEmail.ClickSaveButton();
             newEmail.ClickCloseButton();
-
         }
         
         [When(@"I send it from drafts")]
@@ -69,7 +61,6 @@ namespace Epam.Automation.Mentoring.Mail.Autotests
             draft.ClickSendButton();
             draft.CloseEmail();
             emails.WaitForEmailSent();
-
         }
         
         [Then(@"It should be sent")]
@@ -87,7 +78,7 @@ namespace Epam.Automation.Mentoring.Mail.Autotests
             Dispose();
         }
 
-        public void Dispose()
+        private void Dispose()
         {
             Thread.Sleep(3000);
             driver.Quit();
